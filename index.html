@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sean's Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="desktop">
+
+  <!-- Desktop icons -->
+  <div id="icon-grid">
+    <div class="desk-icon" data-id="webgames"   tabindex="0"><div class="icon-img">🎮</div><div class="icon-label">Webgames</div></div>
+    <div class="desk-icon" data-id="pigskin"    tabindex="0"><div class="icon-img">🏈</div><div class="icon-label">Pigskin</div></div>
+    <div class="desk-icon" data-id="scoracle"   tabindex="0"><div class="icon-img">📊</div><div class="icon-label">Scoracle</div></div>
+    <div class="desk-icon" data-id="tableful"   tabindex="0"><div class="icon-img">📋</div><div class="icon-label">Tableful</div></div>
+    <div class="desk-icon" data-id="nostalgia"  tabindex="0"><div class="icon-img">📺</div><div class="icon-label">Nostalgia Machine</div></div>
+    <div class="desk-icon" data-id="openclaude" tabindex="0"><div class="icon-img">🤖</div><div class="icon-label">OpenClaude</div></div>
+  </div>
+
+  <!-- Windows injected by script.js -->
+  <div id="windows-container"></div>
+
+</div><!-- /desktop -->
+
+<!-- Start Menu -->
+<div id="start-menu" class="hidden">
+  <div class="start-sidebar"><span class="sidebar-brand">Sean G.</span></div>
+  <div class="start-items">
+    <div class="start-item has-sub" id="item-programs">
+      <span class="si-icon">📁</span><span class="si-label">Programs</span><span class="si-arrow">►</span>
+    </div>
+    <div class="start-sep"></div>
+    <div class="start-item" id="item-run">
+      <span class="si-icon">🏃</span><span class="si-label">Run...</span>
+    </div>
+    <div class="start-item" id="item-shutdown">
+      <span class="si-icon">🔌</span><span class="si-label">Shut Down...</span>
+    </div>
+  </div>
+</div>
+
+<!-- Programs submenu -->
+<div id="programs-submenu" class="hidden"></div>
+
+<!-- Run dialog -->
+<div class="window dialog" id="run-dialog">
+  <div class="title-bar focused">
+    <span class="title-icon">🏃</span>
+    <span class="title-text">Run</span>
+    <div class="win-controls">
+      <button class="win-btn" id="run-close">✕</button>
+    </div>
+  </div>
+  <div class="dialog-body">
+    <div class="run-row">
+      <span class="run-big-icon">🏃</span>
+      <div class="run-right">
+        <p>Type a project name and press OK to open it.</p>
+        <div class="run-input-row">
+          <label for="run-input">Open:</label>
+          <input type="text" id="run-input" autocomplete="off" spellcheck="false" placeholder="e.g. nostalgia" />
+        </div>
+      </div>
+    </div>
+    <div class="run-buttons">
+      <button class="dlg-btn" id="run-ok">OK</button>
+      <button class="dlg-btn" id="run-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Shutdown screen -->
+<div id="shutdown-screen" class="hidden">
+  <div class="shutdown-inner">
+    <div class="shutdown-logo">⊞</div>
+    <div class="shutdown-text">It is now safe to<br>turn off your computer.</div>
+    <button id="shutdown-restart">↺ Restart</button>
+  </div>
+</div>
+
+<!-- Taskbar -->
+<div id="taskbar">
+  <button id="start-btn"><span class="start-logo">⊞</span><strong>Start</strong></button>
+  <div class="taskbar-divider"></div>
+  <div id="taskbar-windows"></div>
+  <div class="taskbar-divider" style="margin-left:auto;"></div>
+  <div id="taskbar-clock-wrap"><span id="taskbar-clock"></span></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
