@@ -141,6 +141,7 @@ body, button, input, label {
   font-size: 10px; font-family: inherit; cursor: default;
   display: flex; align-items: center; justify-content: center;
   padding: 0; color: var(--black);
+  touch-action: manipulation;
 }
 .win-btn:active {
   border-top: 1px solid var(--dark); border-left: 1px solid var(--dark);
@@ -342,6 +343,7 @@ body, button, input, label {
   display: flex; align-items: center; gap: 8px;
   padding: 7px 10px 7px 8px; cursor: default;
   white-space: nowrap; font-size: var(--fs);
+  touch-action: manipulation;
 }
 .start-item:hover { background: var(--navy); color: var(--white); }
 .start-item:hover .si-arrow { color: var(--white); }
@@ -419,6 +421,7 @@ body, button, input, label {
   box-shadow: inset 1px 1px 0 var(--light), inset -1px -1px 0 var(--mid);
   padding: 4px 20px; font-family: inherit; font-size: var(--fs);
   cursor: default; min-width: 72px; text-align: center;
+  touch-action: manipulation;
 }
 .dlg-btn:hover { background: #c8c8c8; }
 .dlg-btn:active {
@@ -519,7 +522,7 @@ body, button, input, label {
     align-content: start;
     padding: 28px 20px 20px;
     pointer-events: all;
-    height: calc(100vh - var(--tb-h));
+    height: calc(100dvh - var(--tb-h));
     overflow-y: auto;
   }
 
@@ -544,7 +547,7 @@ body, button, input, label {
     left: 0 !important;
     top: 0 !important;
     width: 100vw !important;
-    height: calc(100vh - var(--tb-h)) !important;
+    height: calc(100dvh - var(--tb-h)) !important;
     box-shadow: none;
     border: none;
     z-index: 50;

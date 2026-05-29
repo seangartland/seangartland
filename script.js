@@ -2,8 +2,8 @@ const PROJECTS = [
   { id: 'resume',    icon: '📄', title: 'Resume',        url: 'resume.html' },
   { id: 'linkedin',  icon: '💼', title: 'LinkedIn',      url: 'https://www.linkedin.com/in/seangartland', noframe: true },
   { id: 'github',    icon: '🐙', title: 'GitHub',        url: 'https://github.com/seangartland',          noframe: true },
-  { id: 'nostalgia', icon: '📺', title: 'TimeSurf.TV',   url: 'https://nostalgia-machine-five.vercel.app' },
-  { id: 'pigskin',   icon: '🏈', title: 'Pigskin Royale', url: 'https://pigskin-royale.vercel.app' },
+  { id: 'nostalgia', icon: '📺', title: 'TimeSurf.TV',   url: 'https://timesurf.tv?yearMin=1990&yearMax=1999' },
+  { id: 'pigskin',   icon: '🏈', title: 'Pigskin Royale', url: 'https://pigskin-royale.vercel.app', noframe: true },
   { id: 'scoracle',  icon: '📊', title: 'Scoracle',      url: 'https://scoreacle.vercel.app' },
 ];
 
@@ -168,9 +168,10 @@ function openWindow(id) {
     openPos[id] = { left: 40 + cascade * 26, top: 20 + cascade * 26 };
     cascade = (cascade + 1) % 8;
   }
-  win.style.left    = openPos[id].left + 'px';
-  win.style.top     = openPos[id].top  + 'px';
   win.style.display = 'flex';
+  const _tbH  = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tb-h'));
+  win.style.left = Math.min(openPos[id].left, Math.max(0, window.innerWidth  - win.offsetWidth))  + 'px';
+  win.style.top  = Math.min(openPos[id].top,  Math.max(0, window.innerHeight - win.offsetHeight - _tbH)) + 'px';
 
   addTaskbarBtn(id);
   focusWindow(id);
@@ -379,7 +380,7 @@ document.addEventListener('click', e => {
 const runDialog = document.getElementById('run-dialog');
 const runInput  = document.getElementById('run-input');
 
-function showRunDialog() { runDialog.style.display = 'flex'; runDialog.style.zIndex = ++winZTop; runInput.value = ''; runInput.focus(); }
+function showRunDialog() { runDialog.style.display = 'flex'; runDialog.style.zIndex = 99999; runInput.value = ''; runInput.focus(); }
 function hideRunDialog() { runDialog.style.display = 'none'; }
 
 function runOk() {
