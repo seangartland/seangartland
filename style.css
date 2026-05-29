@@ -505,3 +505,61 @@ body, button, input, label {
   padding: 4px 12px; height: 34px; display: flex; align-items: center; white-space: nowrap;
 }
 #taskbar-clock { font-size: var(--fs); }
+
+/* ── MOBILE ──────────────────────────────────────── */
+@media (max-width: 600px) {
+  /* Icon grid: centered flex wrap instead of absolute positions */
+  #icon-grid {
+    position: relative;
+    inset: unset;
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    gap: 20px 16px;
+    justify-content: start;
+    align-content: center;
+    padding: 24px 20px;
+    pointer-events: all;
+    height: calc(100vh - var(--tb-h));
+    overflow-y: auto;
+  }
+
+  .desk-icon {
+    position: relative !important;
+    left: unset !important;
+    top: unset !important;
+    width: 80px;
+  }
+
+  .icon-img { font-size: 32px; width: 44px; height: 44px; }
+  .icon-label { font-size: 11px; }
+
+  /* Windows: full screen */
+  .window {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - var(--tb-h)) !important;
+    box-shadow: none;
+    border: none;
+    z-index: 50;
+  }
+
+  /* Hide minimize/maximize on mobile — close only */
+  .btn-min, .btn-max { display: none; }
+
+  /* Taskbar: hide window buttons, keep start + clock */
+  #taskbar-windows { display: none; }
+  #taskbar { justify-content: space-between; }
+
+  /* Start menu full-width on mobile */
+  #start-menu {
+    left: 0;
+    right: 0;
+    bottom: var(--tb-h);
+    width: 100%;
+  }
+
+  /* Hide programs submenu arrow on mobile */
+  .si-arrow { display: none; }
+}

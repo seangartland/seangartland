@@ -1,8 +1,7 @@
 const PROJECTS = [
-  { id: 'nostalgia',  icon: '📺', title: 'Nostalgia Machine', url: 'https://nostalgia-machine-five.vercel.app' },
+  { id: 'nostalgia',  icon: '📺', title: 'TimeSurf.TV', url: 'https://nostalgia-machine-five.vercel.app' },
   { id: 'pigskin',    icon: '🏈', title: 'Pigskin Royale',    url: 'https://pigskin-royale.vercel.app' },
   { id: 'scoracle',   icon: '📊', title: 'Scoracle',          url: 'https://scoreacle.vercel.app' },
-  { id: 'webgames',   icon: '🎮', title: 'Webgames',          url: '' },
   { id: 'linkedin',   icon: '💼', title: 'LinkedIn',          url: 'https://www.linkedin.com/in/seangartland', noframe: true },
   { id: 'github',     icon: '🐙', title: 'GitHub',            url: 'https://github.com/seangartland',          noframe: true },
   { id: 'resume',     icon: '📄', title: 'Resume',            url: 'resume.html' },
@@ -275,13 +274,19 @@ const dblTimers = {};
 function initIcons() {
   const icons = document.querySelectorAll('.desk-icon');
   const colW = 100, rowH = 118, padX = 14, padY = 14;
+  // Row 0: resume, linkedin, github
+  // Row 1: nostalgia, pigskin, scoracle
+  const layout = {
+    resume:    [0, 0], linkedin:  [1, 0], github:    [2, 0],
+    nostalgia: [0, 1], pigskin:   [1, 1], scoracle:  [2, 1],
+  };
 
-  icons.forEach((icon, i) => {
-    icon.style.left    = (padX + (i % 2) * colW) + 'px';
-    icon.style.top     = (padY + Math.floor(i / 2) * rowH) + 'px';
-    icon.style.zIndex  = 1;
-
+  icons.forEach((icon) => {
     const id = icon.dataset.id;
+    const pos = layout[id] || [0, 0];
+    icon.style.left   = (padX + pos[0] * colW) + 'px';
+    icon.style.top    = (padY + pos[1] * rowH) + 'px';
+    icon.style.zIndex = 1;
 
     icon.addEventListener('mousedown', e => {
       if (e.button !== 0) return;
@@ -320,6 +325,12 @@ function initIcons() {
     });
 
     icon.addEventListener('keydown', e => { if (e.key === 'Enter') openWindow(id); });
+
+    // Mobile: single tap opens window directly
+    icon.addEventListener('touchend', e => {
+      e.preventDefault();
+      openWindow(id);
+    }, { passive: false });
   });
 }
 
