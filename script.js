@@ -1,10 +1,11 @@
 const PROJECTS = [
-  { id: 'webgames',   icon: '🎮', title: 'Webgames',          url: '' },
-  { id: 'pigskin',    icon: '🏈', title: 'Pigskin Royale',    url: '' },
-  { id: 'scoracle',   icon: '📊', title: 'Scoracle',          url: '' },
-  { id: 'tableful',   icon: '📋', title: 'Tableful',          url: '' },
   { id: 'nostalgia',  icon: '📺', title: 'Nostalgia Machine', url: 'https://nostalgia-machine-five.vercel.app' },
-  { id: 'openclaude', icon: '🤖', title: 'OpenClaude',        url: '' },
+  { id: 'pigskin',    icon: '🏈', title: 'Pigskin Royale',    url: 'https://pigskin-royale.vercel.app' },
+  { id: 'scoracle',   icon: '📊', title: 'Scoracle',          url: 'https://scoreacle.vercel.app' },
+  { id: 'webgames',   icon: '🎮', title: 'Webgames',          url: '' },
+  { id: 'linkedin',   icon: '💼', title: 'LinkedIn',          url: 'https://www.linkedin.com/in/seangartland', noframe: true },
+  { id: 'github',     icon: '🐙', title: 'GitHub',            url: 'https://github.com/seangartland',          noframe: true },
+  { id: 'resume',     icon: '📄', title: 'Resume',            url: 'resume.html' },
 ];
 
 // ── WINDOW FACTORY ────────────────────────────────
@@ -15,14 +16,21 @@ function createWindow(p) {
 
   const addrText = p.url || 'about:blank';
 
-  const frameHtml = p.url
-    ? `<div class="frame-loading" id="loading-${p.id}">⌛ Loading...</div>
-       <iframe class="project-frame" id="frame-${p.id}" data-src="${p.url}" title="${p.title}"></iframe>`
-    : `<div class="frame-placeholder">
+  const frameHtml = !p.url
+    ? `<div class="frame-placeholder">
          <div class="ph-icon">${p.icon}</div>
          <div class="ph-title">${p.title}</div>
          <div class="ph-msg">Coming Soon</div>
-       </div>`;
+       </div>`
+    : p.noframe
+    ? `<div class="frame-placeholder">
+         <div class="ph-icon">${p.icon}</div>
+         <div class="ph-title">${p.title}</div>
+         <div class="ph-msg">This site can't be displayed in a window.</div>
+         <a class="ph-open" href="${p.url}" target="_blank" rel="noopener noreferrer">Open in new tab ↗</a>
+       </div>`
+    : `<div class="frame-loading" id="loading-${p.id}">⌛ Loading...</div>
+       <iframe class="project-frame" id="frame-${p.id}" data-src="${p.url}" title="${p.title}"></iframe>`;
 
   win.innerHTML = `
     <div class="title-bar">
@@ -44,6 +52,63 @@ function createWindow(p) {
 
   return win;
 }
+
+// ── FAVICON (canvas PNG — works on file:// + Safari) ──
+(function () {
+  const c = document.createElement('canvas');
+  c.width = c.height = 32;
+  const x = c.getContext('2d');
+
+  // Teal desktop
+  x.fillStyle = '#008080'; x.fillRect(0, 0, 32, 32);
+
+  // Window shadow
+  x.fillStyle = 'rgba(0,0,0,0.3)'; x.fillRect(6, 7, 22, 17);
+
+  // Window chrome
+  x.fillStyle = '#c0c0c0'; x.fillRect(4, 5, 22, 17);
+
+  // 3D border highlight
+  x.fillStyle = '#ffffff';
+  x.fillRect(4, 5, 22, 1); x.fillRect(4, 5, 1, 17);
+
+  // 3D border shadow
+  x.fillStyle = '#404040';
+  x.fillRect(4, 21, 22, 1); x.fillRect(25, 5, 1, 17);
+
+  // Title bar
+  const grad = x.createLinearGradient(5, 0, 24, 0);
+  grad.addColorStop(0, '#000080'); grad.addColorStop(1, '#1084d0');
+  x.fillStyle = grad; x.fillRect(5, 6, 19, 5);
+
+  // Close button
+  x.fillStyle = '#c0c0c0'; x.fillRect(21, 7, 3, 3);
+  x.strokeStyle = '#000'; x.lineWidth = 0.8;
+  x.beginPath(); x.moveTo(22, 8); x.lineTo(23, 9); x.stroke();
+  x.beginPath(); x.moveTo(23, 8); x.lineTo(22, 9); x.stroke();
+
+  // Content area
+  x.fillStyle = '#ffffff'; x.fillRect(5, 11, 19, 10);
+
+  // Fake content lines
+  x.fillStyle = '#c8c8c8';
+  x.fillRect(7, 13, 11, 1); x.fillRect(7, 15, 15, 1); x.fillRect(7, 17, 8, 1);
+
+  // Taskbar
+  x.fillStyle = '#c0c0c0'; x.fillRect(0, 27, 32, 5);
+  x.fillStyle = '#ffffff';  x.fillRect(0, 27, 32, 1);
+
+  // Start button
+  x.fillStyle = '#c0c0c0'; x.fillRect(1, 28, 7, 3);
+  x.fillStyle = '#ffffff';
+  x.fillRect(1, 28, 7, 1); x.fillRect(1, 28, 1, 3);
+  x.fillStyle = '#404040';
+  x.fillRect(7, 28, 1, 3); x.fillRect(1, 30, 7, 1);
+
+  const link = document.querySelector("link[rel='icon']") || document.createElement('link');
+  link.rel = 'icon'; link.href = c.toDataURL();
+  document.head.appendChild(link);
+})();
 
 // ── MAXIMIZE / RESTORE ───────────────────────────
 const maxState = {};

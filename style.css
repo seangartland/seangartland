@@ -75,6 +75,20 @@ body, button, input, label {
   word-break: break-word;
 }
 
+.li-icon {
+  background: #0077b5;
+  color: #ffffff;
+  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.gh-icon {
+  background: #1a1a1a;
+  border-radius: 50%;
+}
+
 .desk-icon:focus .icon-img  { outline: 1px dotted var(--white); filter: brightness(0.6) sepia(0.8) hue-rotate(200deg); }
 .desk-icon:focus .icon-label { background: var(--navy); color: var(--white); outline: 1px dotted var(--white); }
 
@@ -218,6 +232,59 @@ body, button, input, label {
 .ph-icon  { font-size: 56px; }
 .ph-title { font-size: 16px; font-weight: bold; }
 .ph-msg   { font-size: 12px; color: var(--mid); }
+
+.ph-open {
+  margin-top: 6px;
+  display: inline-block;
+  background: var(--chrome);
+  border-top:    2px solid var(--white);
+  border-left:   2px solid var(--white);
+  border-right:  2px solid var(--dark);
+  border-bottom: 2px solid var(--dark);
+  box-shadow: inset 1px 1px 0 var(--light), inset -1px -1px 0 var(--mid);
+  padding: 5px 20px;
+  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--black);
+  cursor: default;
+}
+.ph-open:hover { background: #c8c8c8; }
+
+/* ── SCREENSHOT (noframe) ────────────────────────── */
+.frame-screenshot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+.frame-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.screenshot-visit {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--chrome);
+  border-top:    2px solid var(--white);
+  border-left:   2px solid var(--white);
+  border-right:  2px solid var(--dark);
+  border-bottom: 2px solid var(--dark);
+  box-shadow: inset 1px 1px 0 var(--light), inset -1px -1px 0 var(--mid);
+  padding: 3px 10px;
+  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--black);
+  cursor: default;
+  z-index: 2;
+}
+.screenshot-visit:hover { background: #c8c8c8; }
 
 /* ── STATUS BAR ──────────────────────────────────── */
 .status-bar {

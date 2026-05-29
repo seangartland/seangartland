@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sean Gartland — Resume</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Georgia, "Times New Roman", serif; font-size: 14px; color: #1a1a1a; background: #f4f4f0; padding: 32px 16px; }
+    .page { max-width: 780px; margin: 0 auto; background: #fff; padding: 52px 60px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
+
+    header { border-bottom: 2px solid #1a1a1a; padding-bottom: 16px; margin-bottom: 22px; }
+    h1 { font-size: 28px; letter-spacing: 1px; font-weight: bold; text-transform: uppercase; }
+    .contact { margin-top: 7px; font-size: 12px; font-family: Arial, sans-serif; color: #444; display: flex; flex-wrap: wrap; gap: 4px 12px; }
+    .contact a { color: #0077b5; text-decoration: none; }
+    .contact a:hover { text-decoration: underline; }
+
+    section { margin-bottom: 24px; }
+    h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; font-family: Arial, sans-serif; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 14px; color: #555; }
+
+    .skills-outer { display: flex; gap: 28px; align-items: flex-start; }
+    .skills-grid { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .skill-row { display: flex; align-items: baseline; gap: 8px; font-family: Arial, sans-serif; font-size: 12px; }
+    .skill-label { font-weight: bold; font-size: 11px; color: #555; min-width: 78px; flex-shrink: 0; text-align: right; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .skill-tag {
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      padding: 2px 8px;
+      border-radius: 3px;
+      border: 1px solid #ddd;
+      background: #f5f5f5;
+      color: #333;
+      white-space: nowrap;
+    }
+    .skill-row.cat-analytics .skill-tag { background: #eef4fb; border-color: #c5d9ee; color: #2a5a8a; }
+    .skill-row.cat-lang     .skill-tag { background: #f0f7ee; border-color: #bcddb5; color: #2a6e22; }
+    .skill-row.cat-frontend .skill-tag { background: #fef6ec; border-color: #f0d5a8; color: #8a5a10; }
+    .skill-row.cat-backend  .skill-tag { background: #f4f0f9; border-color: #d5c2ea; color: #5a3a8a; }
+
+    /* Logo grid */
+    .skills-logos {
+      display: grid;
+      grid-template-columns: repeat(4, 36px);
+      gap: 10px 8px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+    .logo-item img {
+      width: 22px;
+      height: 22px;
+      opacity: 0.85;
+    }
+    .logo-item span {
+      font-size: 8.5px;
+      font-family: Arial, sans-serif;
+      color: #999;
+      text-align: center;
+      line-height: 1.1;
+    }
+    body.dark .logo-item img { opacity: 0.7; filter: brightness(1.4); }
+    body.dark .logo-item span { color: #666; }
+
+    .co-nm  { --co: #7b5ea7; }
+    .co-pr  { --co: #b07d2e; }
+    .co-sc  { --co: #2e8b7a; }
+    .project-name-link { font-weight: bold; font-size: 13px; color: var(--co, #1a1a1a); text-decoration: none; }
+    .project-name-link:hover { text-decoration: underline; }
+    .project-stack { font-size: 11px; font-family: Arial, sans-serif; color: #666; font-style: italic; margin-top: 1px; }
+    .project-desc { font-size: 12px; font-family: Arial, sans-serif; color: #333; margin-top: 3px; line-height: 1.5; }
+
+    /* TIMELINE */
+    .co-snl   { --co: #3d7ab5; }
+    .co-dk    { --co: #c4513a; }
+    .co-ws    { --co: #5a9e6b; }
+    .co-sears { --co: #8b7bb0; }
+    .co-edu   { --co: #aaaaaa; }
+
+    .timeline { margin-top: 4px; }
+
+    /* Each company: flex row — spine on left, card on right */
+    .tl-co {
+      display: flex;
+      margin-bottom: 0;
+    }
+
+    .tl-spine {
+      width: 62px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* "Now" label at top of first entry */
+    .tl-top-label {
+      height: 16px;
+      text-align: right;
+      padding-right: 9px;
+      font-size: 10px;
+      font-family: Arial, sans-serif;
+      color: #888;
+      line-height: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Colored vertical line fills space between top label and bottom dot */
+    .tl-line {
+      flex: 1;
+      padding-right: 15px; /* center the 2px line in the 20px dot column */
+      display: flex;
+      justify-content: flex-end;
+    }
+    .tl-line-inner {
+      width: 2px;
+      background: var(--co, #ccc);
+      border-radius: 1px;
+      min-height: 8px;
+    }
+
+    /* Bottom: year label + dot */
+    .tl-bot {
+      display: flex;
+      align-items: center;
+      height: 14px;
+      margin-bottom: 0;
+    }
+    .tl-bot-yr {
+      width: 42px;
+      text-align: right;
+      padding-right: 9px;
+      font-size: 10.5px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      color: #555;
+      line-height: 1;
+    }
+    .tl-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--co, #888);
+      flex-shrink: 0;
+    }
+
+    /* Card on right */
+    .tl-card {
+      flex: 1;
+      padding-left: 12px;
+      padding-bottom: 8px;
+      padding-top: 4px;
+    }
+
+    .tl-company-group {
+      border: 1px solid #e8e8e8;
+      border-left: 3px solid var(--co, #ccc);
+      border-radius: 0 4px 4px 0;
+      padding: 8px 12px 8px 10px;
+      background: #fafafa;
+    }
+
+    .tl-company-name { font-size: 12.5px; font-weight: bold; color: var(--co, #1a1a1a); margin-bottom: 4px; }
+    .tl-company-link { color: inherit; text-decoration: none; }
+    .tl-company-link:hover { text-decoration: underline; }
+    .tl-company-loc { font-size: 11px; font-family: Arial, sans-serif; color: #888; font-weight: normal; margin-left: 6px; }
+
+    .tl-role { font-size: 12px; font-family: Arial, sans-serif; font-style: italic; color: #444; line-height: 1.7; padding-left: 2px; }
+    .tl-role.primary { font-weight: bold; font-style: normal; color: #1a1a1a; }
+    .tl-yr-note { font-size: 10.5px; color: #aaa; font-style: normal; font-weight: normal; }
+
+    ul.tl-bullets { margin-top: 4px; padding-left: 16px; }
+    ul.tl-bullets li { font-size: 11.5px; font-family: Arial, sans-serif; color: #333; line-height: 1.6; margin-bottom: 2px; }
+
+    /* Education section gap */
+    .tl-gap { height: 20px; }
+
+    /* Dark mode toggle button */
+    #theme-btn {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      color: #888;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: border-color 0.2s, color 0.2s;
+      z-index: 100;
+    }
+    #theme-btn:hover { color: #333; border-color: #999; }
+
+    /* Dark mode */
+    body.dark { background: #181818; color: #d4d4d4; }
+    body.dark .page { background: #222; box-shadow: 0 2px 16px rgba(0,0,0,0.5); }
+    body.dark header { border-bottom-color: #444; }
+    body.dark h2 { color: #888; border-bottom-color: #333; }
+    body.dark .contact { color: #aaa; }
+    body.dark .contact a { color: #6aafd4; }
+    body.dark .tl-company-group { background: #2a2a2a; border-color: #3a3a3a; }
+    body.dark .tl-role { color: #aaa; }
+    body.dark .tl-role.primary { color: #e0e0e0; }
+    body.dark .tl-company-loc { color: #666; }
+    body.dark .tl-yr-note { color: #666; }
+    body.dark .tl-bot-yr { color: #777; }
+    body.dark .tl-top-label { color: #666; }
+    body.dark ul.tl-bullets li { color: #bbb; }
+    body.dark .project-stack { color: #777; }
+    body.dark .project-desc { color: #aaa; }
+    body.dark .skill-label { color: #777; }
+    body.dark .skill-tag { background: #2e2e2e; border-color: #3a3a3a; color: #bbb; }
+    body.dark .skill-row.cat-analytics .skill-tag { background: #1a2a38; border-color: #2a4a62; color: #7ab0d4; }
+    body.dark .skill-row.cat-lang     .skill-tag { background: #1a2e1a; border-color: #2a4a2a; color: #7ab87a; }
+    body.dark .skill-row.cat-frontend .skill-tag { background: #2e2418; border-color: #4a3a20; color: #c4a060; }
+    body.dark .skill-row.cat-backend  .skill-tag { background: #241a30; border-color: #3a2a50; color: #a080c4; }
+    body.dark .skill-row.cat-tools    .skill-tag { background: #1e2a2a; border-color: #2a4040; color: #60b0aa; }
+    .skill-row.cat-tools .skill-tag { background: #edf5f4; border-color: #b0d8d4; color: #1a6b62; }
+    body.dark #theme-btn { border-color: #444; color: #666; }
+    body.dark #theme-btn:hover { color: #aaa; border-color: #666; }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .page { box-shadow: none; padding: 36px 48px; }
+      #theme-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+<button id="theme-btn" onclick="document.body.classList.toggle('dark');this.textContent=document.body.classList.contains('dark')?'☀ light':'◑ dark'">◑ dark</button>
+<div class="page">
+
+  <header>
+    <h1>Sean Gartland</h1>
+    <div class="contact">
+      <span>San Francisco, CA</span>
+      <a href="mailto:gartland.79@gmail.com">gartland.79@gmail.com</a>
+      <a href="https://www.linkedin.com/in/seangartland" target="_blank">linkedin.com/in/seangartland</a>
+      <a href="https://github.com/seangartland" target="_blank">github.com/seangartland</a>
+      <a href="#" target="_blank">seangartland.com</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills-outer">
+    <div class="skills-grid">
+      <div class="skill-row cat-analytics">
+        <span class="skill-label">Analytics</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">Sigma</span>
+          <span class="skill-tag">Looker</span>
+          <span class="skill-tag">dbt</span>
+          <span class="skill-tag">Excel</span>
+        </div>
+      </div>
+      <div class="skill-row cat-lang">
+        <span class="skill-label">Languages</span>
+        <div class="skill-tags">
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span>
+        </div>
+      </div>
+      <div class="skill-row cat-frontend">
+        <span class="skill-label">Frontend</span>
+        <div class="skill-tags">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+        </div>
+      </div>
+      <div class="skill-row cat-backend">
+        <span class="skill-label">Backend</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Prisma</span>
+          <span class="skill-tag">Supabase</span>
+        </div>
+      </div>
+      <div class="skill-row cat-tools">
+        <span class="skill-label">Tools & AI</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Vercel</span>
+          <span class="skill-tag">Vite</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logo grid -->
+    <div class="skills-logos">
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/anthropic/000000" alt="Claude"><span>Claude</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/python" alt="Python"><span>Python</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/postgresql" alt="PostgreSQL"><span>Postgres</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/snowflake" alt="Snowflake"><span>Snowflake</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/react" alt="React"><span>React</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/typescript" alt="TypeScript"><span>TypeScript</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js"><span>Node.js</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/git" alt="Git"><span>Git</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/vercel/000000" alt="Vercel"><span>Vercel</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/supabase" alt="Supabase"><span>Supabase</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/github/000000" alt="GitHub"><span>GitHub</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/mysql" alt="SQL"><span>SQL</span></div>
+    </div>
+
+    </div><!-- /skills-outer -->
+  </section>
+
+  <section>
+    <h2>Solo Projects</h2>
+    <div class="timeline">
+
+      <!-- Nostalgia Machine -->
+      <div class="tl-co co-nm">
+        <div class="tl-spine">
+          <div class="tl-top-label"></div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2026</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://nostalgia-machine-five.vercel.app" target="_blank">Nostalgia Machine</a></div>
+            <div class="project-stack">Vanilla JS · HTML/CSS · Vite · YouTube API · Vercel</div>
+            <div class="project-desc">CRT-themed channel-surfer for browsing nostalgic YouTube clips by year.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pigskin Royale -->
+      <div class="tl-co co-pr">
+        <div class="tl-spine">
+          <div class="tl-top-label"></div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2026</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://pigskin-royale.vercel.app" target="_blank">Pigskin Royale</a></div>
+            <div class="project-stack">React · TypeScript · Node.js · Express · PostgreSQL · Prisma · Supabase Auth · Vercel</div>
+            <div class="project-desc">FPL-style fantasy football platform with salary cap roster management, weekly lineups, and real NFL stats integration.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scoracle -->
+      <div class="tl-co co-sc">
+        <div class="tl-spine">
+          <div class="tl-top-label"></div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2025</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://scoreacle.vercel.app" target="_blank">Scoracle</a></div>
+            <div class="project-stack">React · TypeScript · Vite · Supabase · Vercel</div>
+            <div class="project-desc">NBA stats visualization platform with real-time data, dynamic charts, and live score updates.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Experience &amp; Education</h2>
+    <div class="timeline">
+
+      <!-- Serena & Lily — Now at top, 2021 dot at bottom -->
+      <div class="tl-co co-snl">
+        <div class="tl-spine">
+          <div class="tl-top-label">Now</div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2021</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://www.serenaandlily.com" target="_blank">Serena &amp; Lily</a> <span class="tl-company-loc">Sausalito, CA</span></div>
+            <div class="tl-role primary">Senior Director of Data Analytics <span class="tl-yr-note">(2024–present)</span></div>
+            <ul class="tl-bullets">
+              <li>Lead enterprise analytics strategy across merchandising, planning, marketing, and e-commerce</li>
+              <li>Own executive reporting infrastructure and data governance across business functions</li>
+              <li>Partner with C-suite and cross-functional leaders to surface insights driving revenue and margin</li>
+            </ul>
+            <div class="tl-role">VP of Merchandise Planning <span class="tl-yr-note">(2023–2024)</span></div>
+            <div class="tl-role">Director of Merchandise Planning Analytics <span class="tl-yr-note">(2021–2023)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dolls Kill — 2021 dot at top (shared, DK color), 2019 dot at bottom -->
+      <div class="tl-co co-dk">
+        <div class="tl-spine">
+          <div class="tl-top-label"></div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2019</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://www.dollskill.com" target="_blank">Dolls Kill</a> <span class="tl-company-loc">San Francisco, CA</span></div>
+            <div class="tl-role">Director of Data Analytics <span class="tl-yr-note">(2021)</span></div>
+            <div class="tl-role">Director of Strategic Planning <span class="tl-yr-note">(2019–2021)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Williams-Sonoma — 2019 dot at top, 2015 dot at bottom -->
+      <div class="tl-co co-ws">
+        <div class="tl-spine">
+          <div class="tl-top-label"></div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2015</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://www.williams-sonoma.com" target="_blank">Williams-Sonoma, Inc.</a> <span class="tl-company-loc">San Francisco, CA</span></div>
+            <div class="tl-role">Director of Strategic Planning <span class="tl-yr-note">(2017–2019)</span></div>
+            <div class="tl-role">Strategic Planning Manager <span class="tl-yr-note">(2016–2017)</span></div>
+            <div class="tl-role">Merchandise Planner <span class="tl-yr-note">(2015–2016)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sears — 2015 dot at top, 2012 dot at bottom -->
+      <div class="tl-co co-sears">
+        <div class="tl-spine">
+          <div class="tl-top-label"></div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2012</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://www.sears.com" target="_blank">Sears Holdings Corporation</a> <span class="tl-company-loc">Chicago, IL</span></div>
+            <div class="tl-role">Senior Inventory Analyst <span class="tl-yr-note">(2014–2015)</span></div>
+            <div class="tl-role">Inventory Analyst <span class="tl-yr-note">(2012–2014)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-gap"></div>
+
+      <!-- Ohio State -->
+      <div class="tl-co co-edu">
+        <div class="tl-spine">
+          <div class="tl-top-label"></div>
+          <div class="tl-line"><div class="tl-line-inner"></div></div>
+          <div class="tl-bot"><div class="tl-bot-yr">2008</div><div class="tl-dot"></div></div>
+        </div>
+        <div class="tl-card">
+          <div class="tl-company-group">
+            <div class="tl-company-name"><a class="tl-company-link" href="https://www.osu.edu" target="_blank">The Ohio State University</a> <span class="tl-company-loc">Columbus, OH</span></div>
+            <div class="tl-role">B.S. Business Administration</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

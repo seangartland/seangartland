@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Desktop background -->
+  <rect width="32" height="32" fill="#008080"/>
+
+  <!-- Window shadow -->
+  <rect x="5" y="7" width="22" height="17" fill="#000000" opacity="0.35"/>
+
+  <!-- Window chrome -->
+  <rect x="3" y="5" width="22" height="17" fill="#c0c0c0"/>
+
+  <!-- 3D border: highlight (top + left) -->
+  <path d="M3,5 h22 v1 h-21 v16 h-1 z" fill="#ffffff"/>
+  <!-- 3D border: shadow (bottom + right) -->
+  <path d="M25,5 v17 h-22 v-1 h21 v-16 z" fill="#404040"/>
+
+  <!-- Title bar -->
+  <rect x="4" y="6" width="20" height="5" fill="#000080"/>
+  <rect x="14" y="6" width="10" height="5" fill="#1084d0"/>
+
+  <!-- Close button -->
+  <rect x="21" y="7" width="3" height="3" fill="#c0c0c0"/>
+  <path d="M22,8 l1,1 m0,-1 l-1,1" stroke="#000" stroke-width="0.8" stroke-linecap="round"/>
+
+  <!-- Window content area (white) -->
+  <rect x="4" y="11" width="20" height="10" fill="#ffffff"/>
+
+  <!-- Fake content lines -->
+  <rect x="6" y="13" width="12" height="1" fill="#c0c0c0"/>
+  <rect x="6" y="15" width="16" height="1" fill="#c0c0c0"/>
+  <rect x="6" y="17" width="9"  height="1" fill="#c0c0c0"/>
+
+  <!-- Taskbar -->
+  <rect x="0" y="27" width="32" height="5" fill="#c0c0c0"/>
+  <rect x="0" y="27" width="32" height="1" fill="#ffffff"/>
+
+  <!-- Start button -->
+  <rect x="1" y="28" width="7" height="3" fill="#c0c0c0"/>
+  <path d="M1,28 h7 v1 h-6 v2 h-1 z" fill="#ffffff" opacity="0.8"/>
+  <path d="M8,28 v3 h-7 v-1 h6 v-2 z" fill="#404040" opacity="0.6"/>
+</svg>
