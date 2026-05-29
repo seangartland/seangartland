@@ -1,10 +1,10 @@
 const PROJECTS = [
-  { id: 'nostalgia',  icon: '📺', title: 'TimeSurf.TV', url: 'https://nostalgia-machine-five.vercel.app' },
-  { id: 'pigskin',    icon: '🏈', title: 'Pigskin Royale',    url: 'https://pigskin-royale.vercel.app' },
-  { id: 'scoracle',   icon: '📊', title: 'Scoracle',          url: 'https://scoreacle.vercel.app' },
-  { id: 'linkedin',   icon: '💼', title: 'LinkedIn',          url: 'https://www.linkedin.com/in/seangartland', noframe: true },
-  { id: 'github',     icon: '🐙', title: 'GitHub',            url: 'https://github.com/seangartland',          noframe: true },
-  { id: 'resume',     icon: '📄', title: 'Resume',            url: 'resume.html' },
+  { id: 'resume',    icon: '📄', title: 'Resume',        url: 'resume.html' },
+  { id: 'linkedin',  icon: '💼', title: 'LinkedIn',      url: 'https://www.linkedin.com/in/seangartland', noframe: true },
+  { id: 'github',    icon: '🐙', title: 'GitHub',        url: 'https://github.com/seangartland',          noframe: true },
+  { id: 'nostalgia', icon: '📺', title: 'TimeSurf.TV',   url: 'https://nostalgia-machine-five.vercel.app' },
+  { id: 'pigskin',   icon: '🏈', title: 'Pigskin Royale', url: 'https://pigskin-royale.vercel.app' },
+  { id: 'scoracle',  icon: '📊', title: 'Scoracle',      url: 'https://scoreacle.vercel.app' },
 ];
 
 // ── WINDOW FACTORY ────────────────────────────────

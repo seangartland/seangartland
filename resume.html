@@ -165,8 +165,8 @@
     }
 
     .tl-company-name { font-size: 12.5px; font-weight: bold; color: var(--co, #1a1a1a); margin-bottom: 4px; }
-    .tl-company-link { color: inherit; text-decoration: none; }
-    .tl-company-link:hover { text-decoration: underline; }
+    .tl-company-link { color: inherit; text-decoration: underline; text-decoration-color: rgba(0,0,0,0.25); text-underline-offset: 2px; }
+    .tl-company-link:hover { text-decoration-color: inherit; }
     .tl-company-loc { font-size: 11px; font-family: Arial, sans-serif; color: #888; font-weight: normal; margin-left: 6px; }
 
     .tl-role { font-size: 12px; font-family: Arial, sans-serif; font-style: italic; color: #444; line-height: 1.7; padding-left: 2px; }
@@ -230,6 +230,38 @@
       body { background: white; padding: 0; }
       .page { box-shadow: none; padding: 36px 48px; }
       #theme-btn { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 0; font-size: 13px; }
+      .page { padding: 24px 18px; box-shadow: none; }
+
+      h1 { font-size: 22px; }
+      h2 { font-size: 10px; letter-spacing: 2px; }
+
+      /* Skills: stack logos below tags */
+      .skills-outer { flex-direction: column; gap: 14px; }
+      .skills-logos { grid-template-columns: repeat(6, 36px); }
+      .skill-label { min-width: 64px; font-size: 10px; }
+      .skill-tag { font-size: 10px; padding: 2px 6px; }
+
+      /* Timeline: tighten spine */
+      .tl-spine { width: 48px; }
+      .tl-bot-yr { width: 34px; font-size: 9.5px; padding-right: 7px; }
+      .tl-top-label { padding-right: 7px; font-size: 9px; }
+      .tl-line { padding-right: 11px; }
+      .tl-card { padding-left: 8px; padding-bottom: 12px; }
+      .tl-company-name { font-size: 11.5px; }
+      .tl-role { font-size: 11px; line-height: 1.6; }
+      .tl-yr-note { font-size: 9.5px; }
+      ul.tl-bullets li { font-size: 10.5px; }
+      .tl-company-group { padding: 6px 8px 6px 8px; }
+
+      /* Projects */
+      .project-stack { font-size: 10px; }
+      .project-desc  { font-size: 11px; }
+
+      #theme-btn { top: 10px; right: 10px; font-size: 10px; padding: 3px 8px; }
     }
   </style>
 </head>
@@ -301,7 +333,7 @@
 
     <!-- Logo grid -->
     <div class="skills-logos">
-      <div class="logo-item"><img src="https://cdn.simpleicons.org/anthropic/000000" alt="Claude"><span>Claude</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/claude" alt="Claude"><span>Claude</span></div>
       <div class="logo-item"><img src="https://cdn.simpleicons.org/python" alt="Python"><span>Python</span></div>
       <div class="logo-item"><img src="https://cdn.simpleicons.org/postgresql" alt="PostgreSQL"><span>Postgres</span></div>
       <div class="logo-item"><img src="https://cdn.simpleicons.org/snowflake" alt="Snowflake"><span>Snowflake</span></div>
@@ -389,9 +421,11 @@
             <div class="tl-company-name"><a class="tl-company-link" href="https://www.serenaandlily.com" target="_blank">Serena &amp; Lily</a> <span class="tl-company-loc">Sausalito, CA</span></div>
             <div class="tl-role primary">Senior Director of Data Analytics <span class="tl-yr-note">(2024–present)</span></div>
             <ul class="tl-bullets">
-              <li>Lead enterprise analytics strategy across merchandising, planning, marketing, and e-commerce</li>
-              <li>Own executive reporting infrastructure and data governance across business functions</li>
+              <li>Lead the team responsible for data acquisition, modeling, and delivery across all business units</li>
+              <li>Architect and administer Snowflake and Sigma as the company's core analytics infrastructure</li>
               <li>Partner with C-suite and cross-functional leaders to surface insights driving revenue and margin</li>
+              <li>Build agentic workflows that accelerate team velocity across the full development lifecycle</li>
+              <li>Enable business users to query data directly via Claude through semantic layer and MCP integrations</li>
             </ul>
             <div class="tl-role">VP of Merchandise Planning <span class="tl-yr-note">(2023–2024)</span></div>
             <div class="tl-role">Director of Merchandise Planning Analytics <span class="tl-yr-note">(2021–2023)</span></div>

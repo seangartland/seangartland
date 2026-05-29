@@ -516,11 +516,16 @@ body, button, input, label {
     grid-template-columns: repeat(3, 80px);
     gap: 20px 16px;
     justify-content: start;
-    align-content: center;
-    padding: 24px 20px;
+    align-content: start;
+    padding: 28px 20px 20px;
     pointer-events: all;
     height: calc(100vh - var(--tb-h));
     overflow-y: auto;
+  }
+
+  .dialog {
+    width: calc(100vw - 32px) !important;
+    max-width: 360px !important;
   }
 
   .desk-icon {
