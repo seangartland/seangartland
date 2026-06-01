@@ -11,14 +11,17 @@
 
     header { border-bottom: 2px solid #1a1a1a; padding-bottom: 16px; margin-bottom: 22px; }
     h1 { font-size: 28px; letter-spacing: 1px; font-weight: bold; text-transform: uppercase; }
-    .contact { margin-top: 7px; font-size: 12px; font-family: Arial, sans-serif; color: #444; display: flex; flex-wrap: wrap; gap: 4px 12px; }
-    .contact a { color: #0077b5; text-decoration: none; }
+    .contact { margin-top: 7px; font-size: 12px; font-family: Arial, sans-serif; color: #444; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; }
+    .contact a { color: #0077b5; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
     .contact a:hover { text-decoration: underline; }
+    .contact .ci { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
+    .contact-break { display: none; }
+    body.dark .contact .ci { opacity: 0.85; }
 
     section { margin-bottom: 24px; }
     h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; font-family: Arial, sans-serif; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 14px; color: #555; }
 
-    .skills-outer { display: flex; gap: 28px; align-items: flex-start; }
+    .skills-outer { display: flex; gap: 28px; align-items: center; }
     .skills-grid { display: flex; flex-direction: column; gap: 7px; flex: 1; }
     .skill-row { display: flex; align-items: baseline; gap: 8px; font-family: Arial, sans-serif; font-size: 12px; }
     .skill-label { font-weight: bold; font-size: 11px; color: #555; min-width: 78px; flex-shrink: 0; text-align: right; }
@@ -33,15 +36,11 @@
       color: #333;
       white-space: nowrap;
     }
-    .skill-row.cat-analytics .skill-tag { background: #eef4fb; border-color: #c5d9ee; color: #2a5a8a; }
-    .skill-row.cat-lang     .skill-tag { background: #f0f7ee; border-color: #bcddb5; color: #2a6e22; }
-    .skill-row.cat-frontend .skill-tag { background: #fef6ec; border-color: #f0d5a8; color: #8a5a10; }
-    .skill-row.cat-backend  .skill-tag { background: #f4f0f9; border-color: #d5c2ea; color: #5a3a8a; }
 
     /* Logo grid */
     .skills-logos {
       display: grid;
-      grid-template-columns: repeat(4, 36px);
+      grid-template-columns: repeat(3, 52px);
       gap: 10px 8px;
       flex-shrink: 0;
       padding-top: 2px;
@@ -53,12 +52,12 @@
       gap: 3px;
     }
     .logo-item img {
-      width: 22px;
-      height: 22px;
+      width: 28px;
+      height: 28px;
       opacity: 0.85;
     }
     .logo-item span {
-      font-size: 8.5px;
+      font-size: 8px;
       font-family: Arial, sans-serif;
       color: #999;
       text-align: center;
@@ -67,20 +66,15 @@
     body.dark .logo-item img { opacity: 0.7; filter: brightness(1.4); }
     body.dark .logo-item span { color: #666; }
 
-    .co-nm  { --co: #7b5ea7; }
-    .co-pr  { --co: #b07d2e; }
-    .co-sc  { --co: #2e8b7a; }
+    /* Neutral spine/border across all roles */
+    .co-nm, .co-pr, .co-sc { --co: #c8c8c8; }
     .project-name-link { font-weight: bold; font-size: 13px; color: var(--co, #1a1a1a); text-decoration: none; }
     .project-name-link:hover { text-decoration: underline; }
     .project-stack { font-size: 11px; font-family: Arial, sans-serif; color: #666; font-style: italic; margin-top: 1px; }
     .project-desc { font-size: 12px; font-family: Arial, sans-serif; color: #333; margin-top: 3px; line-height: 1.5; }
 
     /* TIMELINE */
-    .co-snl   { --co: #3d7ab5; }
-    .co-dk    { --co: #c4513a; }
-    .co-ws    { --co: #5a9e6b; }
-    .co-sears { --co: #8b7bb0; }
-    .co-edu   { --co: #aaaaaa; }
+    .co-snl, .co-dk, .co-ws, .co-sears, .co-edu { --co: #c8c8c8; }
 
     .timeline { margin-top: 4px; }
 
@@ -91,7 +85,7 @@
     }
 
     .tl-spine {
-      width: 62px;
+      width: 36px;
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
@@ -100,8 +94,7 @@
     /* "Now" label at top of first entry */
     .tl-top-label {
       height: 16px;
-      text-align: right;
-      padding-right: 9px;
+      text-align: center;
       font-size: 10px;
       font-family: Arial, sans-serif;
       color: #888;
@@ -109,12 +102,11 @@
       letter-spacing: 0.3px;
     }
 
-    /* Colored vertical line fills space between top label and bottom dot */
+    /* Colored vertical line fills space between top label and bottom year */
     .tl-line {
       flex: 1;
-      padding-right: 15px; /* center the 2px line in the 20px dot column */
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
     }
     .tl-line-inner {
       width: 2px;
@@ -123,30 +115,23 @@
       min-height: 8px;
     }
 
-    /* Bottom: year label + dot */
+    /* Bottom: year label replaces dot */
     .tl-bot {
       display: flex;
       align-items: center;
+      justify-content: center;
       height: 14px;
       margin-bottom: 0;
     }
     .tl-bot-yr {
-      width: 42px;
-      text-align: right;
-      padding-right: 9px;
+      text-align: center;
       font-size: 10.5px;
       font-family: Arial, sans-serif;
       font-weight: bold;
       color: #555;
       line-height: 1;
     }
-    .tl-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--co, #888);
-      flex-shrink: 0;
-    }
+    .tl-dot { display: none; }
 
     /* Card on right */
     .tl-card {
@@ -164,7 +149,7 @@
       background: #fafafa;
     }
 
-    .tl-company-name { font-size: 12.5px; font-weight: bold; color: var(--co, #1a1a1a); margin-bottom: 4px; }
+    .tl-company-name { font-size: 12.5px; font-weight: bold; color: #1a1a1a; margin-bottom: 4px; }
     .tl-company-link { color: inherit; text-decoration: underline; text-decoration-color: rgba(0,0,0,0.25); text-underline-offset: 2px; }
     .tl-company-link:hover { text-decoration-color: inherit; }
     .tl-company-loc { font-size: 11px; font-family: Arial, sans-serif; color: #888; font-weight: normal; margin-left: 6px; }
@@ -178,6 +163,18 @@
 
     /* Education section gap */
     .tl-gap { height: 20px; }
+
+    /* Latest Projects: no spine, full-width cards */
+    .projects-timeline .tl-spine { display: none; }
+    .projects-timeline .tl-card { padding-left: 0; }
+    .project-header {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 2px 10px;
+    }
+    .project-header .tl-company-name { margin-bottom: 0; }
+    .project-header .project-stack { margin-top: 0; }
 
     /* Dark mode toggle button */
     #theme-btn {
@@ -206,6 +203,8 @@
     body.dark .contact { color: #aaa; }
     body.dark .contact a { color: #6aafd4; }
     body.dark .tl-company-group { background: #2a2a2a; border-color: #3a3a3a; }
+    body.dark .tl-company-name { color: #e8e8e8; }
+    body.dark .tl-company-link { text-decoration-color: rgba(255,255,255,0.35); }
     body.dark .tl-role { color: #aaa; }
     body.dark .tl-role.primary { color: #e0e0e0; }
     body.dark .tl-company-loc { color: #666; }
@@ -217,12 +216,6 @@
     body.dark .project-desc { color: #aaa; }
     body.dark .skill-label { color: #777; }
     body.dark .skill-tag { background: #2e2e2e; border-color: #3a3a3a; color: #bbb; }
-    body.dark .skill-row.cat-analytics .skill-tag { background: #1a2a38; border-color: #2a4a62; color: #7ab0d4; }
-    body.dark .skill-row.cat-lang     .skill-tag { background: #1a2e1a; border-color: #2a4a2a; color: #7ab87a; }
-    body.dark .skill-row.cat-frontend .skill-tag { background: #2e2418; border-color: #4a3a20; color: #c4a060; }
-    body.dark .skill-row.cat-backend  .skill-tag { background: #241a30; border-color: #3a2a50; color: #a080c4; }
-    body.dark .skill-row.cat-tools    .skill-tag { background: #1e2a2a; border-color: #2a4040; color: #60b0aa; }
-    .skill-row.cat-tools .skill-tag { background: #edf5f4; border-color: #b0d8d4; color: #1a6b62; }
     body.dark #theme-btn { border-color: #444; color: #666; }
     body.dark #theme-btn:hover { color: #aaa; border-color: #666; }
 
@@ -239,16 +232,21 @@
       h1 { font-size: 22px; }
       h2 { font-size: 10px; letter-spacing: 2px; }
 
+      /* Force contact onto two lines: location+email, then website+linkedin+github */
+      .contact-break { display: block; flex-basis: 100%; height: 0; }
+
       /* Skills: stack logos below tags */
-      .skills-outer { flex-direction: column; gap: 14px; }
-      .skills-logos { grid-template-columns: repeat(6, 36px); }
+      .skills-outer { flex-direction: column; gap: 14px; align-items: stretch; }
+      .skills-logos { grid-template-columns: repeat(6, auto); gap: 8px 14px; width: 100%; justify-content: center; }
+      .skills-logos .logo-item img { width: 20px; height: 20px; }
+      .skills-logos .logo-item span { font-size: 8px; }
       .skill-label { min-width: 64px; font-size: 10px; }
       .skill-tag { font-size: 10px; padding: 2px 6px; }
 
       /* Timeline: tighten spine */
-      .tl-spine { width: 48px; }
-      .tl-bot-yr { width: 34px; font-size: 9.5px; padding-right: 7px; }
-      .tl-top-label { padding-right: 7px; font-size: 9px; }
+      .tl-spine { width: 30px; }
+      .tl-bot-yr { font-size: 9.5px; }
+      .tl-top-label { font-size: 9px; }
       .tl-line { padding-right: 11px; }
       .tl-card { padding-left: 8px; padding-bottom: 12px; }
       .tl-company-name { font-size: 11.5px; }
@@ -274,9 +272,10 @@
     <div class="contact">
       <span>San Francisco, CA</span>
       <a href="mailto:gartland.79@gmail.com">gartland.79@gmail.com</a>
-      <a href="https://www.linkedin.com/in/seangartland" target="_blank">linkedin.com/in/seangartland</a>
-      <a href="https://github.com/seangartland" target="_blank">github.com/seangartland</a>
+      <span class="contact-break" aria-hidden="true"></span>
       <a href="https://seangartland.com" target="_blank">seangartland.com</a>
+      <a href="https://www.linkedin.com/in/seangartland" target="_blank"><svg class="ci" viewBox="0 0 24 24" aria-label="LinkedIn"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.852 3.37-1.852 3.601 0 4.267 2.37 4.267 5.455v6.288zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>seangartland</a>
+      <a href="https://github.com/seangartland" target="_blank"><svg class="ci" viewBox="0 0 24 24" aria-label="GitHub"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>seangartland</a>
     </div>
   </header>
 
@@ -284,12 +283,13 @@
     <h2>Skills</h2>
     <div class="skills-outer">
     <div class="skills-grid">
-      <div class="skill-row cat-analytics">
-        <span class="skill-label">Analytics</span>
+      <div class="skill-row cat-tools">
+        <span class="skill-label">AI &amp; Tools</span>
         <div class="skill-tags">
-          <span class="skill-tag">Snowflake</span>
-          <span class="skill-tag">Sigma</span>
-          <span class="skill-tag">Looker</span>
+          <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">MCP</span>
+          <span class="skill-tag">OpenAI</span>
+          <span class="skill-tag">Docker</span>
         </div>
       </div>
       <div class="skill-row cat-lang">
@@ -297,32 +297,15 @@
         <div class="skill-tags">
           <span class="skill-tag">SQL</span>
           <span class="skill-tag">Python</span>
-          <span class="skill-tag">JavaScript</span>
           <span class="skill-tag">TypeScript</span>
         </div>
       </div>
-      <div class="skill-row cat-frontend">
-        <span class="skill-label">Frameworks</span>
-        <div class="skill-tags">
-          <span class="skill-tag">React</span>
-          <span class="skill-tag">Node.js</span>
-          <span class="skill-tag">Django</span>
-          <span class="skill-tag">Flask</span>
-        </div>
-      </div>
       <div class="skill-row cat-backend">
-        <span class="skill-label">Databases</span>
+        <span class="skill-label">Data</span>
         <div class="skill-tags">
           <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">SQLite</span>
-          <span class="skill-tag">Supabase</span>
-        </div>
-      </div>
-      <div class="skill-row cat-tools">
-        <span class="skill-label">AI</span>
-        <div class="skill-tags">
-          <span class="skill-tag">Claude Code</span>
-          <span class="skill-tag">OpenAI</span>
+          <span class="skill-tag">Snowflake</span>
+          <span class="skill-tag">Sigma</span>
         </div>
       </div>
     </div>
@@ -333,20 +316,16 @@
       <div class="logo-item"><img src="https://cdn.simpleicons.org/python" alt="Python"><span>Python</span></div>
       <div class="logo-item"><img src="https://cdn.simpleicons.org/postgresql" alt="PostgreSQL"><span>Postgres</span></div>
       <div class="logo-item"><img src="https://cdn.simpleicons.org/snowflake" alt="Snowflake"><span>Snowflake</span></div>
-      <div class="logo-item"><img src="https://cdn.simpleicons.org/react" alt="React"><span>React</span></div>
       <div class="logo-item"><img src="https://cdn.simpleicons.org/typescript" alt="TypeScript"><span>TypeScript</span></div>
-      <div class="logo-item"><img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js"><span>Node.js</span></div>
-      <div class="logo-item"><img src="https://cdn.simpleicons.org/supabase" alt="Supabase"><span>Supabase</span></div>
-      <div class="logo-item"><img src="https://cdn.simpleicons.org/github/000000" alt="GitHub"><span>GitHub</span></div>
-      <div class="logo-item"><img src="https://cdn.simpleicons.org/mysql" alt="SQL"><span>SQL</span></div>
+      <div class="logo-item"><img src="https://cdn.simpleicons.org/docker" alt="Docker"><span>Docker</span></div>
     </div>
 
     </div><!-- /skills-outer -->
   </section>
 
   <section>
-    <h2>Solo Projects</h2>
-    <div class="timeline">
+    <h2>Latest Projects</h2>
+    <div class="timeline projects-timeline">
 
       <!-- Nostalgia Machine -->
       <div class="tl-co co-nm">
@@ -357,9 +336,11 @@
         </div>
         <div class="tl-card">
           <div class="tl-company-group">
-            <div class="tl-company-name"><a class="tl-company-link" href="https://timesurf.tv" target="_blank">TimeSurf.TV</a></div>
-            <div class="project-stack">Vanilla JS · HTML/CSS · Vite · YouTube API · Vercel</div>
-            <div class="project-desc">CRT-themed channel-surfer for browsing nostalgic YouTube clips by year.</div>
+            <div class="project-header">
+              <div class="tl-company-name"><a class="tl-company-link" href="https://timesurf.tv" target="_blank">TimeSurf.TV</a></div>
+              <div class="project-stack">Vanilla JS · YouTube API · Vercel</div>
+            </div>
+            <div class="project-desc">Retro TV channel-surfer for nostalgic YouTube clips by year.</div>
           </div>
         </div>
       </div>
@@ -373,25 +354,11 @@
         </div>
         <div class="tl-card">
           <div class="tl-company-group">
-            <div class="tl-company-name"><a class="tl-company-link" href="https://pigskin-royale.vercel.app" target="_blank">Pigskin Royale</a></div>
-            <div class="project-stack">React · TypeScript · Node.js · Express · PostgreSQL · Prisma · Supabase Auth · Vercel</div>
-            <div class="project-desc">FPL-style fantasy football platform with salary cap roster management, weekly lineups, and real NFL stats integration.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scoracle -->
-      <div class="tl-co co-sc">
-        <div class="tl-spine">
-          <div class="tl-top-label"></div>
-          <div class="tl-line"><div class="tl-line-inner"></div></div>
-          <div class="tl-bot"><div class="tl-bot-yr">2025</div><div class="tl-dot"></div></div>
-        </div>
-        <div class="tl-card">
-          <div class="tl-company-group">
-            <div class="tl-company-name"><a class="tl-company-link" href="https://scoreacle.vercel.app" target="_blank">Scoracle</a></div>
-            <div class="project-stack">React · TypeScript · Vite · Supabase · Vercel</div>
-            <div class="project-desc">NBA stats visualization platform with real-time data, dynamic charts, and live score updates.</div>
+            <div class="project-header">
+              <div class="tl-company-name"><a class="tl-company-link" href="https://pigskin-royale.vercel.app" target="_blank">Pigskin Royale</a></div>
+              <div class="project-stack">React · TypeScript · Node.js · PostgreSQL</div>
+            </div>
+            <div class="project-desc">Salary-cap Fantasy Football, climb the worldwide leaderboard.</div>
           </div>
         </div>
       </div>
@@ -415,13 +382,13 @@
             <div class="tl-company-name"><a class="tl-company-link" href="https://www.serenaandlily.com" target="_blank">Serena &amp; Lily</a> <span class="tl-company-loc">Sausalito, CA</span></div>
             <div class="tl-role primary">Senior Director of Data Analytics <span class="tl-yr-note">(2024–present)</span></div>
             <ul class="tl-bullets">
+              <li>Enable business users to query and interact with data directly via Claude (semantic layer + MCP integrations)</li>
+              <li>Build and ship agentic workflows across the analytics lifecycle, from request to delivery</li>
               <li>Lead the team responsible for data acquisition, modeling, and delivery across all business units</li>
-              <li>Architect and administer Snowflake and Sigma as the company's core analytics infrastructure</li>
+              <li>Own and administer Snowflake + Sigma; pioneer new features for agentic AI workflows</li>
               <li>Partner with C-suite and cross-functional leaders to surface insights driving revenue and margin</li>
-              <li>Build agentic workflows that accelerate team velocity across the full development lifecycle</li>
-              <li>Enable business users to query data directly via Claude through semantic layer and MCP integrations</li>
             </ul>
-            <div class="tl-role">VP of Merchandise Planning <span class="tl-yr-note">(2023–2024)</span></div>
+            <div class="tl-role">VP of Merchandise Planning <span class="tl-yr-note">(2023–2024) — pivoted to build the AI-native data org</span></div>
             <div class="tl-role">Director of Merchandise Planning Analytics <span class="tl-yr-note">(2021–2023)</span></div>
           </div>
         </div>
