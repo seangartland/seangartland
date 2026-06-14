@@ -3,7 +3,7 @@ const PROJECTS = [
   { id: 'linkedin',  icon: '💼', title: 'LinkedIn',      url: 'https://www.linkedin.com/in/seangartland', noframe: true },
   { id: 'github',    icon: '🐙', title: 'GitHub',        url: 'https://github.com/seangartland',          noframe: true },
   { id: 'nostalgia', icon: '📺', title: 'TimeSurf.TV',   url: 'https://timesurf.tv?yearMin=1990&yearMax=1999' },
-  { id: 'pigskin',   icon: '🏈', title: 'Pigskin Royale', url: 'https://pigskin-royale.vercel.app', noframe: true },
+  { id: 'pigskin',   icon: '🏈', title: 'Pigskin',       url: 'https://pigskin-royale.vercel.app', noframe: true },
   { id: 'scoracle',  icon: '📊', title: 'Scoracle',      url: 'https://scoreacle.vercel.app' },
 ];
 
@@ -108,16 +108,28 @@ function applyTheme(themeId) {
   });
   bootScreen.dataset.theme = theme.id;
   if (theme.id === 'aqua') closeStartMenu();
+  syncAquaShellState();
 }
 
 function isDesktopActive() {
   return body.dataset.screen === 'desktop';
 }
 
+function isAquaMobile() {
+  return currentTheme === 'aqua' && window.matchMedia('(max-width: 600px)').matches;
+}
+
+function syncAquaShellState() {
+  const hasOpenWindows = Array.from(document.querySelectorAll('#windows-container .window'))
+    .some(win => win.style.display === 'flex');
+  body.classList.toggle('aqua-window-open', isAquaMobile() && hasOpenWindows);
+}
+
 function enterDesktop() {
   if (!appInitialized) initApp();
   body.dataset.screen = 'desktop';
   bootScreen.classList.add('hidden');
+  syncAquaShellState();
 }
 
 function returnToBootScreen() {
@@ -126,6 +138,7 @@ function returnToBootScreen() {
   shutdownScreen.classList.add('hidden');
   body.dataset.screen = 'login';
   bootScreen.classList.remove('hidden');
+  body.classList.remove('aqua-window-open');
 }
 
 function getShellInsets() {
@@ -305,6 +318,7 @@ function openWindow(id) {
   addTaskbarBtn(id);
   focusWindow(id);
   lazyLoadFrame(id);
+  syncAquaShellState();
 }
 
 function closeWindow(id) {
@@ -320,6 +334,7 @@ function closeWindow(id) {
     win.style.display = 'none';
   }
   removeTaskbarBtn(id);
+  syncAquaShellState();
 }
 
 function minimizeWindow(id) {
@@ -327,6 +342,7 @@ function minimizeWindow(id) {
   if (win) win.style.display = 'none';
   document.querySelector(`.tb-win-btn[data-id="${id}"]`)?.classList.remove('active');
   document.querySelectorAll('.window').forEach(w => w.classList.remove('focused'));
+  syncAquaShellState();
 }
 
 // ── LAZY IFRAME LOAD ──────────────────────────────
@@ -632,11 +648,13 @@ function initApp() {
   updateClock();
   clockTimer = setInterval(updateClock, 10000);
   appInitialized = true;
+  syncAquaShellState();
 }
 
 aquaThemeSelect?.addEventListener('change', e => applyTheme(e.target.value));
 themeSelect.addEventListener('change', e => applyTheme(e.target.value));
 taskbarThemeSelect.addEventListener('change', e => applyTheme(e.target.value));
 bootUser.addEventListener('click', enterDesktop);
+window.addEventListener('resize', syncAquaShellState);
 
 applyTheme(currentTheme);

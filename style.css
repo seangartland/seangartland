@@ -6,6 +6,7 @@
   --tb-h:   46px;
   --shell-top: 0px;
   --shell-bottom: var(--tb-h);
+  --desktop-position: center center;
 }
 
 body[data-theme="win95"] {
@@ -53,7 +54,7 @@ body[data-theme="winxp"] {
   --blue:   #3c8cf6;
   --teal:   #4e8ad9;
   --desktop-bg: #3f86e6;
-  --desktop-image: url("assets/wallpapers/winxp-bliss.png");
+  --desktop-image: url("assets/wallpapers/winxp-bliss-desktop.jpg");
   --shell-top: 0px;
   --shell-bottom: var(--tb-h);
   --title-active: linear-gradient(180deg, #2c7df0 0%, #0d58d5 48%, #0a49bb 100%);
@@ -124,6 +125,7 @@ body[data-theme="vista"] {
   --teal:   #3a6f9f;
   --desktop-bg: #5f85b5;
   --desktop-image: url("assets/wallpapers/winvista-aurora.jpg");
+  --desktop-position: center calc(100% - 24px);
   --shell-top: 0px;
   --shell-bottom: var(--tb-h);
   --title-active: linear-gradient(180deg, #8ec2ff 0%, #4f8fe0 56%, #376dbb 100%);
@@ -232,12 +234,13 @@ body[data-theme="aqua"] #aqua-shell {
   align-items: center;
   justify-content: space-between;
   padding: 0 14px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(220,232,243,0.58) 100%);
-  border-bottom: 1px solid rgba(89, 124, 165, 0.3);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
-  color: #173c6a;
+  background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(226,237,247,0.78) 100%);
+  border-bottom: 1px solid rgba(88, 123, 165, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 1px 0 rgba(61, 93, 129, 0.08);
+  color: #102a4b;
   backdrop-filter: blur(12px);
   pointer-events: auto;
+  z-index: 19000;
 }
 
 body[data-theme="aqua"] #aqua-menubar {
@@ -260,12 +263,13 @@ body[data-theme="aqua"] #aqua-menubar {
   background: transparent;
   font-size: 18px;
   line-height: 1;
-  color: #12325d;
+  color: #102a4b;
 }
 
 .aqua-brand {
   font-size: 12px;
   font-weight: bold;
+  color: #102a4b;
 }
 
 .aqua-menu-sep {
@@ -287,6 +291,7 @@ body[data-theme="aqua"] #aqua-menubar {
 
 body[data-theme="aqua"] .aqua-theme-picker {
   display: flex;
+  margin-left: auto;
 }
 
 .aqua-theme-picker span {
@@ -298,9 +303,10 @@ body[data-theme="aqua"] .aqua-theme-picker {
 .aqua-theme-picker select {
   min-width: 150px;
   padding: 4px 8px;
-  border: 1px solid rgba(80, 109, 148, 0.45);
+  border: 1px solid rgba(80, 109, 148, 0.55);
   border-radius: 10px;
-  background: rgba(255,255,255,0.92);
+  background: rgba(255,255,255,0.96);
+  color: #102a4b;
 }
 
 .aqua-right {
@@ -351,11 +357,12 @@ body[data-theme="aqua"] .aqua-theme-picker {
   gap: 8px;
   padding: 11px 16px 12px;
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(215,232,245,0.18) 100%);
-  border: 1px solid rgba(255,255,255,0.45);
-  box-shadow: 0 16px 30px rgba(9, 28, 61, 0.22);
+  background: linear-gradient(180deg, rgba(255,255,255,0.64) 0%, rgba(223,235,246,0.44) 100%);
+  border: 1px solid rgba(255,255,255,0.68);
+  box-shadow: 0 18px 34px rgba(9, 28, 61, 0.26);
   backdrop-filter: blur(18px);
   pointer-events: auto;
+  z-index: 50;
 }
 
 body[data-theme="aqua"] #aqua-dock {
@@ -375,7 +382,7 @@ body[data-theme="aqua"] #icon-grid {
   padding: 0;
   border: none;
   background: transparent;
-  color: #12325d;
+  color: #102a4b;
   cursor: default;
   transform-origin: bottom center;
 }
@@ -400,7 +407,7 @@ body[data-theme="aqua"] #icon-grid {
 .aqua-dock-label {
   font-size: 10px;
   font-weight: bold;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.85);
 }
 
 #aqua-mobile-launcher {
@@ -597,6 +604,39 @@ body[data-theme="aqua"] #icon-grid {
   background: var(--picker-bg);
 }
 
+body[data-theme="win95"] .theme-picker select,
+body[data-theme="win95"] .taskbar-theme-picker select {
+  background: linear-gradient(180deg, #f8f8f8 0%, #d0d0d0 100%);
+  border: 1px solid #7b7b7b;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #9a9a9a;
+}
+
+body[data-theme="winxp"] .theme-picker select,
+body[data-theme="winxp"] .taskbar-theme-picker select {
+  background: linear-gradient(180deg, #ffffff 0%, #e6f1ff 100%);
+  border: 1px solid #1f5dc5;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+body[data-theme="win7"] .theme-picker select,
+body[data-theme="vista"] .theme-picker select,
+body[data-theme="win7"] .taskbar-theme-picker select,
+body[data-theme="vista"] .taskbar-theme-picker select {
+  background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(218,231,245,0.88) 100%);
+  border: 1px solid rgba(109, 133, 167, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+body[data-theme="aqua"] .theme-picker select,
+body[data-theme="aqua"] .taskbar-theme-picker select,
+body[data-theme="aqua"] .aqua-theme-picker select {
+  min-width: 164px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(226,238,248,0.9) 100%);
+  border: 1px solid rgba(90, 128, 168, 0.58);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 0 rgba(255,255,255,0.45);
+}
+
 /* ── DESKTOP ─────────────────────────────────────── */
 #desktop {
   width: 100vw;
@@ -604,7 +644,7 @@ body[data-theme="aqua"] #icon-grid {
   background: var(--desktop-bg);
   background-image: var(--desktop-image);
   background-size: cover;
-  background-position: center center;
+  background-position: var(--desktop-position, center center);
   background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
@@ -1479,6 +1519,7 @@ body[data-theme="aqua"] #shutdown-screen {
 body[data-theme="aqua"] .window {
   width: min(940px, calc(100vw - 32px));
   height: min(700px, calc(100vh - var(--shell-top) - var(--shell-bottom) - 24px));
+  z-index: 100;
 }
 
 body[data-theme="aqua"] .desk-icon {
@@ -1826,6 +1867,14 @@ body[data-theme="vista"] #start-btn {
 
 /* ── MOBILE ──────────────────────────────────────── */
 @media (max-width: 600px) {
+  body[data-theme="winxp"] {
+    --desktop-image: url("assets/wallpapers/winxp-bliss-mobile.jpg");
+  }
+
+  body[data-theme="vista"] {
+    --desktop-position: 45% calc(100% - 36px);
+  }
+
   .boot-panel {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1839,6 +1888,33 @@ body[data-theme="vista"] #start-btn {
 
   .boot-instruction {
     font-size: 16px;
+  }
+
+  body[data-theme="win7"] .boot-brand-win,
+  body[data-theme="vista"] .boot-brand-win {
+    align-items: center;
+    text-align: center;
+  }
+
+  body[data-theme="win7"] .boot-brand-win .boot-brand-text,
+  body[data-theme="vista"] .boot-brand-win .boot-brand-text {
+    justify-content: center;
+  }
+
+  body[data-theme="win7"] .boot-brand-win .boot-windows,
+  body[data-theme="vista"] .boot-brand-win .boot-windows {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  body[data-theme="win7"] .boot-brand-win .boot-edition,
+  body[data-theme="vista"] .boot-brand-win .boot-edition {
+    font-size: clamp(18px, 5vw, 24px);
+  }
+
+  body[data-theme="win7"] .boot-brand-win .boot-instruction,
+  body[data-theme="vista"] .boot-brand-win .boot-instruction {
+    max-width: 18ch;
+    margin-inline: auto;
   }
 
   .user-tile {
@@ -1944,10 +2020,6 @@ body[data-theme="vista"] #start-btn {
     display: none;
   }
 
-body[data-theme="aqua"] #aqua-menubar {
-  display: none;
-}
-
   body[data-theme="aqua"] #aqua-dock {
     display: none;
   }
@@ -1966,8 +2038,40 @@ body[data-theme="aqua"] #aqua-menubar {
     border: 1px solid rgba(255,255,255,0.35);
     box-shadow: 0 16px 30px rgba(8, 26, 53, 0.25);
     backdrop-filter: blur(16px);
-    z-index: 17001;
+    z-index: 60;
     pointer-events: auto;
+  }
+
+  body[data-theme="aqua"] #aqua-menubar {
+    padding: 0 8px;
+  }
+
+  body[data-theme="aqua"] .aqua-brand {
+    font-size: 11px;
+    max-width: 34vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  body[data-theme="aqua"] .aqua-theme-picker select {
+    min-width: 0;
+    width: 118px;
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+
+  body[data-theme="aqua"].aqua-window-open {
+    --shell-bottom: 0px;
+  }
+
+  body[data-theme="aqua"].aqua-window-open #aqua-mobile-launcher,
+  body[data-theme="aqua"].aqua-window-open #aqua-dock {
+    display: none !important;
+  }
+
+  body[data-theme="aqua"] .window {
+    top: var(--shell-top) !important;
+    z-index: 100 !important;
   }
 
   body[data-theme="aqua"] .boot-panel {
