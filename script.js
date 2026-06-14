@@ -7,6 +7,61 @@ const PROJECTS = [
   { id: 'scoracle',  icon: '📊', title: 'Scoracle',      url: 'https://scoreacle.vercel.app' },
 ];
 
+const THEMES = {
+  win95: {
+    id: 'win95',
+    label: 'Windows 95',
+    bootEdition: '95',
+    bootInstruction: 'Click to enter the desktop.',
+  },
+  winxp: {
+    id: 'winxp',
+    label: 'Windows XP',
+    bootEdition: 'XP',
+    bootInstruction: 'To begin, click your user name.',
+  },
+};
+
+const DEFAULT_THEME = 'win95';
+const body = document.body;
+const bootScreen = document.getElementById('boot-screen');
+const bootUser = document.getElementById('boot-user');
+const bootEdition = document.getElementById('boot-edition');
+const bootInstruction = document.getElementById('boot-instruction');
+const themeSelect = document.getElementById('theme-select');
+const taskbarThemeSelect = document.getElementById('taskbar-theme-select');
+const startMenu = document.getElementById('start-menu');
+const startBtn = document.getElementById('start-btn');
+const programsSub = document.getElementById('programs-submenu');
+const runDialog = document.getElementById('run-dialog');
+const runInput = document.getElementById('run-input');
+const shutdownScreen = document.getElementById('shutdown-screen');
+const container = document.getElementById('windows-container');
+
+let appInitialized = false;
+let clockTimer = null;
+let currentTheme = body.dataset.theme in THEMES ? body.dataset.theme : DEFAULT_THEME;
+
+function applyTheme(themeId) {
+  const theme = THEMES[themeId] || THEMES[DEFAULT_THEME];
+  currentTheme = theme.id;
+  body.dataset.theme = theme.id;
+  bootEdition.textContent = theme.bootEdition;
+  bootInstruction.textContent = theme.bootInstruction;
+  themeSelect.value = theme.id;
+  taskbarThemeSelect.value = theme.id;
+}
+
+function isDesktopActive() {
+  return body.dataset.screen === 'desktop';
+}
+
+function enterDesktop() {
+  if (!appInitialized) initApp();
+  body.dataset.screen = 'desktop';
+  bootScreen.classList.add('hidden');
+}
+
 // ── WINDOW FACTORY ────────────────────────────────
 function createWindow(p) {
   const win = document.createElement('div');
@@ -159,6 +214,7 @@ const openPos = {};
 let cascade = 0;
 
 function openWindow(id) {
+  if (!isDesktopActive()) return;
   const win = document.getElementById('win-' + id);
   if (!win) return;
   if (win.style.display === 'flex') { focusWindow(id); return; }
@@ -336,51 +392,24 @@ function initIcons() {
 }
 
 // ── START MENU ────────────────────────────────────
-const startMenu   = document.getElementById('start-menu');
-const startBtn    = document.getElementById('start-btn');
-const programsSub = document.getElementById('programs-submenu');
 let subCloseTimer = null;
 
-PROJECTS.forEach(p => {
-  const item = document.createElement('div');
-  item.className = 'sub-item';
-  item.innerHTML = `<span class="sub-icon">${p.icon}</span><span>${p.title}</span>`;
-  item.addEventListener('click', () => { openWindow(p.id); closeStartMenu(); });
-  programsSub.appendChild(item);
-});
-
-function openStartMenu()  { startMenu.classList.remove('hidden'); startBtn.classList.add('active'); }
+function openStartMenu()  {
+  if (!isDesktopActive()) return;
+  startMenu.classList.remove('hidden');
+  startBtn.classList.add('active');
+}
 function closeStartMenu() { startMenu.classList.add('hidden'); programsSub.classList.add('hidden'); startBtn.classList.remove('active'); clearTimeout(subCloseTimer); }
 function toggleStartMenu(){ startMenu.classList.contains('hidden') ? openStartMenu() : closeStartMenu(); }
 
-startBtn.addEventListener('click', e => { e.stopPropagation(); toggleStartMenu(); });
-
-const itemPrograms = document.getElementById('item-programs');
-const openSub  = () => { clearTimeout(subCloseTimer); programsSub.classList.remove('hidden'); };
-const closeSub = () => { subCloseTimer = setTimeout(() => programsSub.classList.add('hidden'), 120); };
-
-itemPrograms.addEventListener('mouseenter', openSub);
-itemPrograms.addEventListener('mouseleave', closeSub);
-programsSub.addEventListener('mouseenter',  openSub);
-programsSub.addEventListener('mouseleave',  closeSub);
-
-['item-run', 'item-shutdown'].forEach(id => {
-  document.getElementById(id).addEventListener('mouseenter', () => {
-    clearTimeout(subCloseTimer); programsSub.classList.add('hidden');
-  });
-});
-
-document.getElementById('item-run').addEventListener('click',      () => { closeStartMenu(); showRunDialog(); });
-document.getElementById('item-shutdown').addEventListener('click',  () => { closeStartMenu(); doShutdown(); });
-document.addEventListener('click', e => {
-  if (!startMenu.contains(e.target) && !programsSub.contains(e.target) && e.target !== startBtn) closeStartMenu();
-});
-
 // ── RUN DIALOG ────────────────────────────────────
-const runDialog = document.getElementById('run-dialog');
-const runInput  = document.getElementById('run-input');
-
-function showRunDialog() { runDialog.style.display = 'flex'; runDialog.style.zIndex = 99999; runInput.value = ''; runInput.focus(); }
+function showRunDialog() {
+  if (!isDesktopActive()) return;
+  runDialog.style.display = 'flex';
+  runDialog.style.zIndex = 99999;
+  runInput.value = '';
+  runInput.focus();
+}
 function hideRunDialog() { runDialog.style.display = 'none'; }
 
 function runOk() {
@@ -390,15 +419,8 @@ function runOk() {
   else { runInput.style.outline = '2px solid red'; setTimeout(() => { runInput.style.outline = ''; }, 600); }
 }
 
-document.getElementById('run-ok').addEventListener('click', runOk);
-document.getElementById('run-cancel').addEventListener('click', hideRunDialog);
-document.getElementById('run-close').addEventListener('click', hideRunDialog);
-runInput.addEventListener('keydown', e => { if (e.key === 'Enter') runOk(); });
-
 // ── SHUTDOWN ──────────────────────────────────────
-const shutdownScreen = document.getElementById('shutdown-screen');
 function doShutdown() { shutdownScreen.classList.remove('hidden'); }
-document.getElementById('shutdown-restart').addEventListener('click', () => location.reload());
 
 // ── CLOCK ─────────────────────────────────────────
 function updateClock() {
@@ -407,25 +429,90 @@ function updateClock() {
 }
 
 // ── INIT ──────────────────────────────────────────
-const container = document.getElementById('windows-container');
-PROJECTS.forEach(p => {
-  const win = createWindow(p);
-  container.appendChild(win);
-  makeDraggable(win);
-  win.addEventListener('mousedown', () => focusWindow(p.id));
-  win.querySelector('.btn-close').addEventListener('click', () => closeWindow(p.id));
-  win.querySelector('.btn-min').addEventListener('click',   () => minimizeWindow(p.id));
-  win.querySelector('.btn-max').addEventListener('click',   () => toggleMaximize(p.id));
-});
+function initApp() {
+  if (appInitialized) return;
 
-initIcons();
+  PROJECTS.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'sub-item';
+    item.innerHTML = `<span class="sub-icon">${p.icon}</span><span>${p.title}</span>`;
+    item.addEventListener('click', () => { openWindow(p.id); closeStartMenu(); });
+    programsSub.appendChild(item);
+  });
 
-document.getElementById('desktop').addEventListener('mousedown', e => {
-  if (e.target.id === 'desktop' || e.target.id === 'icon-grid') {
-    document.querySelectorAll('.window').forEach(w => w.classList.remove('focused'));
-    document.querySelectorAll('.tb-win-btn').forEach(b => b.classList.remove('active'));
-  }
-});
+  const itemPrograms = document.getElementById('item-programs');
+  const openSub = () => {
+    clearTimeout(subCloseTimer);
+    programsSub.classList.remove('hidden');
+  };
+  const closeSub = () => {
+    subCloseTimer = setTimeout(() => programsSub.classList.add('hidden'), 120);
+  };
 
-updateClock();
-setInterval(updateClock, 10000);
+  startBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    toggleStartMenu();
+  });
+  itemPrograms.addEventListener('mouseenter', openSub);
+  itemPrograms.addEventListener('mouseleave', closeSub);
+  programsSub.addEventListener('mouseenter', openSub);
+  programsSub.addEventListener('mouseleave', closeSub);
+
+  ['item-run', 'item-shutdown'].forEach(id => {
+    document.getElementById(id).addEventListener('mouseenter', () => {
+      clearTimeout(subCloseTimer);
+      programsSub.classList.add('hidden');
+    });
+  });
+
+  document.getElementById('item-run').addEventListener('click', () => {
+    closeStartMenu();
+    showRunDialog();
+  });
+  document.getElementById('item-shutdown').addEventListener('click', () => {
+    closeStartMenu();
+    doShutdown();
+  });
+  document.addEventListener('click', e => {
+    if (!startMenu.contains(e.target) && !programsSub.contains(e.target) && e.target !== startBtn) {
+      closeStartMenu();
+    }
+  });
+
+  document.getElementById('run-ok').addEventListener('click', runOk);
+  document.getElementById('run-cancel').addEventListener('click', hideRunDialog);
+  document.getElementById('run-close').addEventListener('click', hideRunDialog);
+  runInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') runOk();
+  });
+  document.getElementById('shutdown-restart').addEventListener('click', () => location.reload());
+
+  PROJECTS.forEach(p => {
+    const win = createWindow(p);
+    container.appendChild(win);
+    makeDraggable(win);
+    win.addEventListener('mousedown', () => focusWindow(p.id));
+    win.querySelector('.btn-close').addEventListener('click', () => closeWindow(p.id));
+    win.querySelector('.btn-min').addEventListener('click', () => minimizeWindow(p.id));
+    win.querySelector('.btn-max').addEventListener('click', () => toggleMaximize(p.id));
+  });
+
+  initIcons();
+
+  document.getElementById('desktop').addEventListener('mousedown', e => {
+    if (e.target.id === 'desktop' || e.target.id === 'icon-grid') {
+      document.querySelectorAll('.window').forEach(w => w.classList.remove('focused'));
+      document.querySelectorAll('.tb-win-btn').forEach(b => b.classList.remove('active'));
+    }
+  });
+
+  updateClock();
+  clockTimer = setInterval(updateClock, 10000);
+  appInitialized = true;
+}
+
+themeSelect.addEventListener('change', e => applyTheme(e.target.value));
+taskbarThemeSelect.addEventListener('change', e => applyTheme(e.target.value));
+bootUser.addEventListener('click', enterDesktop);
+
+applyTheme(currentTheme);

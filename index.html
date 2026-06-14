@@ -7,7 +7,44 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-theme="win95" data-screen="login">
+
+<div id="boot-screen">
+  <div class="boot-panel">
+    <div class="boot-brand">
+      <div class="boot-logo" aria-hidden="true">
+        <span class="boot-logo-red"></span>
+        <span class="boot-logo-green"></span>
+        <span class="boot-logo-blue"></span>
+        <span class="boot-logo-yellow"></span>
+      </div>
+      <div class="boot-brand-text">
+        <span class="boot-microsoft">Microsoft</span>
+        <span class="boot-windows">Windows</span>
+        <span class="boot-edition" id="boot-edition">95</span>
+      </div>
+      <p class="boot-instruction" id="boot-instruction">Click to enter the desktop.</p>
+    </div>
+
+    <div class="boot-user-area">
+      <button id="boot-user" class="user-tile" type="button">
+        <span class="user-avatar" aria-hidden="true">SG</span>
+        <span class="user-meta">
+          <span class="user-name">Sean Gartland</span>
+          <span class="user-hint">Enter Desktop</span>
+        </span>
+      </button>
+
+      <label class="theme-picker" for="theme-select">
+        <span>Theme</span>
+        <select id="theme-select" aria-label="Select desktop theme">
+          <option value="win95">Windows 95</option>
+          <option value="winxp">Windows XP</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</div>
 
 <div id="desktop">
 
@@ -15,7 +52,7 @@
   <div id="icon-grid">
     <div class="desk-icon" data-id="resume"    tabindex="0"><div class="icon-img">📄</div><div class="icon-label">Resume</div></div>
     <div class="desk-icon" data-id="linkedin"  tabindex="0"><div class="icon-img li-icon">in</div><div class="icon-label">LinkedIn</div></div>
-    <div class="desk-icon" data-id="github"    tabindex="0"><div class="icon-img gh-icon"><img src="https://cdn.simpleicons.org/github/ffffff" style="width:30px;height:30px;" alt="GitHub"></div><div class="icon-label">GitHub</div></div>
+    <div class="desk-icon" data-id="github"    tabindex="0"><div class="icon-img gh-icon"><img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"></div><div class="icon-label">GitHub</div></div>
     <div class="desk-icon" data-id="nostalgia" tabindex="0"><div class="icon-img">📺</div><div class="icon-label">TimeSurf.TV</div></div>
     <div class="desk-icon" data-id="pigskin"   tabindex="0"><div class="icon-img">🏈</div><div class="icon-label">Pigskin Royale</div></div>
     <div class="desk-icon" data-id="scoracle"  tabindex="0"><div class="icon-img">📊</div><div class="icon-label">Scoracle</div></div>
@@ -87,7 +124,14 @@
   <button id="start-btn"><span class="start-logo">⊞</span><strong>Start</strong></button>
   <div class="taskbar-divider"></div>
   <div id="taskbar-windows"></div>
-  <div class="taskbar-divider" style="margin-left:auto;"></div>
+  <label class="taskbar-theme-picker" for="taskbar-theme-select">
+    <span>Theme</span>
+    <select id="taskbar-theme-select" aria-label="Select desktop theme">
+      <option value="win95">Windows 95</option>
+      <option value="winxp">Windows XP</option>
+    </select>
+  </label>
+  <div class="taskbar-divider taskbar-spacer"></div>
   <div id="taskbar-clock-wrap"><span id="taskbar-clock"></span></div>
 </div>
 
