@@ -4,6 +4,8 @@
   --black:  #000000;
   --fs:     13px;
   --tb-h:   46px;
+  --shell-top: 0px;
+  --shell-bottom: var(--tb-h);
 }
 
 body[data-theme="win95"] {
@@ -16,7 +18,9 @@ body[data-theme="win95"] {
   --blue:   #1084d0;
   --teal:   #008080;
   --desktop-bg: var(--teal);
-  --desktop-image: none;
+  --desktop-image: url("assets/wallpapers/win95-sky.jpg");
+  --shell-top: 0px;
+  --shell-bottom: var(--tb-h);
   --title-active: linear-gradient(to right, var(--navy) 0%, var(--blue) 100%);
   --title-inactive: var(--mid);
   --menu-hover: var(--navy);
@@ -49,7 +53,9 @@ body[data-theme="winxp"] {
   --blue:   #3c8cf6;
   --teal:   #4e8ad9;
   --desktop-bg: #3f86e6;
-  --desktop-image: radial-gradient(circle at 18% 16%, rgba(255,255,255,0.34) 0%, rgba(255,255,255,0) 28%), linear-gradient(180deg, #78b4ff 0%, #4b92ee 30%, #2e73d0 100%);
+  --desktop-image: url("assets/wallpapers/winxp-bliss.png");
+  --shell-top: 0px;
+  --shell-bottom: var(--tb-h);
   --title-active: linear-gradient(180deg, #2c7df0 0%, #0d58d5 48%, #0a49bb 100%);
   --title-inactive: linear-gradient(180deg, #7aa2dd 0%, #5d8ccc 100%);
   --menu-hover: linear-gradient(180deg, #4c98ff 0%, #2169d8 100%);
@@ -70,6 +76,111 @@ body[data-theme="winxp"] {
   --user-avatar-bg: linear-gradient(180deg, #ffbf6a 0%, #e76243 100%);
   --picker-bg: rgba(255,255,255,0.95);
   --picker-border: 1px solid rgba(30, 85, 170, 0.5);
+}
+
+body[data-theme="win7"] {
+  --font-ui: "Segoe UI", Tahoma, Arial, sans-serif;
+  --chrome: #d7e7f7;
+  --light:  #f9fcff;
+  --mid:    #9ab4cf;
+  --dark:   #3568a8;
+  --navy:   #153a66;
+  --blue:   #5da2f6;
+  --teal:   #2d6fa6;
+  --desktop-bg: #6c9bd0;
+  --desktop-image: url("assets/wallpapers/win7-harmony.png");
+  --shell-top: 0px;
+  --shell-bottom: var(--tb-h);
+  --title-active: linear-gradient(180deg, #76b7ff 0%, #3b80de 58%, #316ebf 100%);
+  --title-inactive: linear-gradient(180deg, #bcd4ec 0%, #96b8d8 100%);
+  --menu-hover: linear-gradient(180deg, #4f8fdc 0%, #2f68b3 100%);
+  --menu-hover-text: var(--white);
+  --button-radius: 4px;
+  --window-radius: 7px;
+  --window-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 0 0 1px rgba(33, 73, 128, 0.35), 0 8px 18px rgba(18, 56, 104, 0.32);
+  --taskbar-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 -1px 0 rgba(24, 58, 112, 0.35);
+  --boot-bg: linear-gradient(180deg, #7da7df 0%, #497fcb 100%);
+  --boot-panel-bg: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(230,241,255,0.08) 100%);
+  --boot-panel-border: 1px solid rgba(255,255,255,0.22);
+  --boot-panel-shadow: 0 12px 30px rgba(15, 39, 77, 0.28);
+  --boot-copy: #ffffff;
+  --boot-subcopy: rgba(255,255,255,0.92);
+  --user-tile-bg: linear-gradient(180deg, #ffffff 0%, #edf4ff 100%);
+  --user-tile-border: 1px solid rgba(46, 88, 145, 0.35);
+  --user-tile-shadow: 0 8px 18px rgba(22, 49, 90, 0.2);
+  --user-avatar-bg: linear-gradient(180deg, #f5c86a 0%, #d98e28 100%);
+  --picker-bg: rgba(255,255,255,0.96);
+  --picker-border: 1px solid rgba(77, 113, 162, 0.55);
+}
+
+body[data-theme="vista"] {
+  --font-ui: "Segoe UI", Tahoma, Arial, sans-serif;
+  --chrome: #dde8f4;
+  --light:  #fefefe;
+  --mid:    #8da4be;
+  --dark:   #214f8a;
+  --navy:   #102c52;
+  --blue:   #6fa5f0;
+  --teal:   #3a6f9f;
+  --desktop-bg: #5f85b5;
+  --desktop-image: url("assets/wallpapers/winvista-aurora.jpg");
+  --shell-top: 0px;
+  --shell-bottom: var(--tb-h);
+  --title-active: linear-gradient(180deg, #8ec2ff 0%, #4f8fe0 56%, #376dbb 100%);
+  --title-inactive: linear-gradient(180deg, #c3d7ea 0%, #95afc9 100%);
+  --menu-hover: linear-gradient(180deg, #5794df 0%, #2c67b1 100%);
+  --menu-hover-text: var(--white);
+  --button-radius: 5px;
+  --window-radius: 8px;
+  --window-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 0 0 1px rgba(24, 51, 96, 0.35), 0 12px 30px rgba(14, 36, 72, 0.34);
+  --taskbar-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 -1px 0 rgba(12, 32, 67, 0.35);
+  --boot-bg: linear-gradient(180deg, #93b1d9 0%, #5f81b1 100%);
+  --boot-panel-bg: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(223,232,241,0.08) 100%);
+  --boot-panel-border: 1px solid rgba(255,255,255,0.2);
+  --boot-panel-shadow: 0 14px 32px rgba(8, 26, 53, 0.28);
+  --boot-copy: #ffffff;
+  --boot-subcopy: rgba(255,255,255,0.9);
+  --user-tile-bg: linear-gradient(180deg, #fefefe 0%, #edf4ff 100%);
+  --user-tile-border: 1px solid rgba(40, 72, 120, 0.34);
+  --user-tile-shadow: 0 10px 20px rgba(10, 28, 55, 0.2);
+  --user-avatar-bg: linear-gradient(180deg, #f7d078 0%, #e19c31 100%);
+  --picker-bg: rgba(255,255,255,0.95);
+  --picker-border: 1px solid rgba(82, 109, 149, 0.5);
+}
+
+body[data-theme="aqua"] {
+  --font-ui: "Lucida Grande", "Segoe UI", Tahoma, Arial, sans-serif;
+  --chrome: rgba(245, 248, 252, 0.8);
+  --light:  #ffffff;
+  --mid:    #9eb6cc;
+  --dark:   #6d95bb;
+  --navy:   #124f8f;
+  --blue:   #66a8f4;
+  --teal:   #73a7d8;
+  --desktop-bg: #76a4d7;
+  --desktop-image: url("assets/wallpapers/aqua-cheetah-puma.jpg");
+  --shell-top: 24px;
+  --shell-bottom: 104px;
+  --title-active: linear-gradient(180deg, #9cd1ff 0%, #67aaf2 56%, #3f86d7 100%);
+  --title-inactive: linear-gradient(180deg, rgba(224,234,243,0.92) 0%, rgba(177,199,220,0.88) 100%);
+  --menu-hover: linear-gradient(180deg, #80b8f3 0%, #3d87db 100%);
+  --menu-hover-text: var(--white);
+  --button-radius: 10px;
+  --window-radius: 14px;
+  --window-shadow: inset 0 1px 0 rgba(255,255,255,0.95), 0 10px 28px rgba(20, 58, 96, 0.24);
+  --taskbar-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 -1px 0 rgba(67, 111, 149, 0.18);
+  --boot-bg: linear-gradient(180deg, #a3caf0 0%, #6da0d4 100%);
+  --boot-panel-bg: linear-gradient(180deg, rgba(255,255,255,0.22) 0%, rgba(232,242,250,0.1) 100%);
+  --boot-panel-border: 1px solid rgba(255,255,255,0.24);
+  --boot-panel-shadow: 0 14px 34px rgba(16, 47, 84, 0.26);
+  --boot-copy: #ffffff;
+  --boot-subcopy: rgba(255,255,255,0.92);
+  --user-tile-bg: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(233,245,255,0.86) 100%);
+  --user-tile-border: 1px solid rgba(76, 124, 169, 0.35);
+  --user-tile-shadow: 0 10px 22px rgba(20, 45, 73, 0.18);
+  --user-avatar-bg: linear-gradient(180deg, #8be5f5 0%, #3bb7e8 100%);
+  --picker-bg: rgba(255,255,255,0.96);
+  --picker-border: 1px solid rgba(82, 126, 170, 0.42);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -101,6 +212,201 @@ body[data-screen="desktop"] #boot-screen {
 }
 
 /* ── BOOT SCREEN ─────────────────────────────────── */
+#aqua-shell {
+  display: none;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 17000;
+}
+
+body[data-theme="aqua"] #aqua-shell {
+  display: block;
+}
+
+#aqua-menubar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--shell-top);
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(220,232,243,0.58) 100%);
+  border-bottom: 1px solid rgba(89, 124, 165, 0.3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85);
+  color: #173c6a;
+  backdrop-filter: blur(12px);
+  pointer-events: auto;
+}
+
+body[data-theme="aqua"] #aqua-menubar {
+  display: flex;
+}
+
+.aqua-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.aqua-apple-button {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  color: #12325d;
+}
+
+.aqua-brand {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.aqua-menu-sep {
+  opacity: 0.5;
+}
+
+.aqua-menu {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 2px;
+}
+
+.aqua-theme-picker {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+body[data-theme="aqua"] .aqua-theme-picker {
+  display: flex;
+}
+
+.aqua-theme-picker span {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.aqua-theme-picker select {
+  min-width: 150px;
+  padding: 4px 8px;
+  border: 1px solid rgba(80, 109, 148, 0.45);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.92);
+}
+
+.aqua-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.aqua-menu-popover {
+  position: fixed;
+  top: 24px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  padding: 8px;
+  gap: 6px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(220,235,247,0.82) 100%);
+  border: 1px solid rgba(80, 109, 148, 0.25);
+  box-shadow: 0 14px 28px rgba(8, 26, 53, 0.22);
+}
+
+.aqua-menu-popover button {
+  width: 100%;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  text-align: left;
+  font-weight: bold;
+  color: #12325d;
+}
+
+.aqua-menu-popover button:hover {
+  background: linear-gradient(180deg, #85bbe9 0%, #4a8ed9 100%);
+  color: #ffffff;
+}
+
+#aqua-dock {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: none;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 11px 16px 12px;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(215,232,245,0.18) 100%);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 16px 30px rgba(9, 28, 61, 0.22);
+  backdrop-filter: blur(18px);
+  pointer-events: auto;
+}
+
+body[data-theme="aqua"] #aqua-dock {
+  display: flex;
+}
+
+body[data-theme="aqua"] #icon-grid {
+  display: none;
+}
+
+.aqua-dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 66px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #12325d;
+  cursor: default;
+  transform-origin: bottom center;
+}
+
+.aqua-dock-item:hover,
+.aqua-dock-item:focus-visible {
+  transform: scale(1.12) translateY(-2px);
+}
+
+.aqua-dock-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 26px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(214,236,250,0.85) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 10px 16px rgba(3, 25, 59, 0.22);
+}
+
+.aqua-dock-label {
+  font-size: 10px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+#aqua-mobile-launcher {
+  display: none;
+}
+
 #boot-screen {
   position: fixed;
   inset: 0;
@@ -134,6 +440,10 @@ body[data-screen="desktop"] #boot-screen {
   gap: 24px;
 }
 
+.boot-brand-aqua {
+  display: none;
+}
+
 .boot-logo {
   width: 72px;
   height: 72px;
@@ -152,6 +462,19 @@ body[data-screen="desktop"] #boot-screen {
 .boot-logo-green { background: linear-gradient(180deg, #94dc6a 0%, #49a82f 100%); }
 .boot-logo-blue { background: linear-gradient(180deg, #65b3ff 0%, #1e6be5 100%); }
 .boot-logo-yellow { background: linear-gradient(180deg, #ffe78b 0%, #f0bb2b 100%); }
+
+.boot-aqua-mark {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: #ffffff;
+  background: linear-gradient(180deg, rgba(140, 208, 247, 0.95) 0%, rgba(62, 129, 212, 0.96) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 16px 26px rgba(14, 36, 67, 0.24);
+}
 
 .boot-brand-text {
   display: flex;
@@ -280,16 +603,19 @@ body[data-screen="desktop"] #boot-screen {
   height: 100vh;
   background: var(--desktop-bg);
   background-image: var(--desktop-image);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
-  padding-bottom: var(--tb-h);
+  padding: var(--shell-top) 0 var(--shell-bottom);
 }
 
 /* ── DESKTOP ICONS ───────────────────────────────── */
 #icon-grid {
   position: absolute;
   inset: 0;
-  bottom: var(--tb-h);
+  bottom: var(--shell-bottom);
   pointer-events: none;
 }
 
@@ -579,6 +905,8 @@ body[data-screen="desktop"] #boot-screen {
   border-bottom: 2px solid var(--dark);
   box-shadow: inset 1px 1px 0 var(--light), inset -1px -1px 0 var(--mid), 2px 2px 0 var(--black);
   background: var(--chrome);
+  border-radius: var(--window-radius);
+  overflow: hidden;
   z-index: 11000;
 }
 
@@ -625,6 +953,8 @@ body[data-screen="desktop"] #boot-screen {
   border-right: 2px solid var(--dark);
   border-bottom: 2px solid var(--dark);
   box-shadow: inset 1px 1px 0 var(--light), inset -1px -1px 0 var(--mid), 2px 2px 0 var(--black);
+  border-radius: var(--window-radius);
+  overflow: hidden;
   z-index: 11001;
   min-width: 190px;
 }
@@ -855,6 +1185,645 @@ body[data-theme="winxp"] #shutdown-screen {
   background: linear-gradient(180deg, #1f5cc8 0%, #0f3181 100%);
 }
 
+body[data-theme="win7"] #taskbar,
+body[data-theme="vista"] #taskbar {
+  backdrop-filter: blur(12px);
+}
+
+body[data-theme="win7"] #taskbar {
+  background: linear-gradient(180deg, rgba(40, 49, 67, 0.6) 0%, rgba(24, 31, 44, 0.7) 100%);
+  border-top: 1px solid rgba(255,255,255,0.18);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 -1px 0 rgba(6, 15, 33, 0.45);
+}
+
+body[data-theme="vista"] #taskbar {
+  background: linear-gradient(180deg, rgba(28, 34, 48, 0.78) 0%, rgba(16, 21, 34, 0.84) 100%);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 -1px 0 rgba(6, 15, 33, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+body[data-theme="win7"] #start-btn,
+body[data-theme="vista"] #start-btn {
+  width: auto;
+  min-width: 88px;
+  padding: 4px 16px 4px 12px;
+  justify-content: flex-start;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: radial-gradient(circle at 35% 30%, #7bd15f 0%, #2d7d2f 55%, #1d4c1a 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 0 rgba(255,255,255,0.16);
+  color: #ffffff;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+body[data-theme="vista"] #start-btn {
+  min-width: 96px;
+  background: radial-gradient(circle at 35% 30%, #8dd8ff 0%, #2f84e6 52%, #14529b 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.56), 0 1px 0 rgba(255,255,255,0.08);
+}
+
+body[data-theme="win7"] #start-btn strong,
+body[data-theme="vista"] #start-btn strong {
+  display: inline;
+  font-size: 14px;
+}
+
+body[data-theme="win7"] .start-logo,
+body[data-theme="vista"] .start-logo {
+  font-size: 22px;
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.25));
+}
+
+body[data-theme="win7"] .tb-win-btn,
+body[data-theme="vista"] .tb-win-btn,
+body[data-theme="win7"] #taskbar-clock-wrap,
+body[data-theme="vista"] #taskbar-clock-wrap,
+body[data-theme="win7"] .taskbar-theme-picker select,
+body[data-theme="vista"] .taskbar-theme-picker select {
+  background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(210,226,244,0.16) 100%);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: #f5faff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+body[data-theme="win7"] .tb-win-btn,
+body[data-theme="win7"] #taskbar-clock-wrap,
+body[data-theme="win7"] .taskbar-theme-picker select {
+  color: #18324e;
+}
+
+body[data-theme="win7"] .tb-win-btn,
+body[data-theme="vista"] .tb-win-btn {
+  border-radius: 10px;
+}
+
+body[data-theme="win7"] .tb-win-btn {
+  background: linear-gradient(180deg, rgba(255,255,255,0.28) 0%, rgba(220,232,245,0.14) 100%);
+}
+
+body[data-theme="vista"] .tb-win-btn {
+  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(209,226,244,0.08) 100%);
+  border-radius: 12px;
+}
+
+body[data-theme="win7"] .tb-win-btn.active,
+body[data-theme="vista"] .tb-win-btn.active {
+  background: linear-gradient(180deg, rgba(255,255,255,0.42) 0%, rgba(174,204,245,0.22) 100%);
+}
+
+body[data-theme="win7"] #programs-submenu,
+body[data-theme="vista"] #programs-submenu,
+body[data-theme="win7"] #start-menu,
+body[data-theme="vista"] #start-menu,
+body[data-theme="win7"] .dialog-body,
+body[data-theme="vista"] .dialog-body {
+  background: linear-gradient(180deg, rgba(251, 253, 255, 0.82) 0%, rgba(225, 236, 247, 0.74) 100%);
+  backdrop-filter: blur(14px);
+}
+
+body[data-theme="win7"] .window,
+body[data-theme="vista"] .window {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(233,242,252,0.78) 100%);
+  border: 1px solid rgba(62, 104, 160, 0.36);
+  backdrop-filter: blur(16px);
+}
+
+body[data-theme="vista"] .window {
+  background: linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(228,238,248,0.66) 100%);
+  border: 1px solid rgba(69, 105, 154, 0.42);
+  backdrop-filter: blur(20px);
+}
+
+body[data-theme="win7"] .title-bar,
+body[data-theme="vista"] .title-bar {
+  padding: 6px 8px 6px 10px;
+  border-radius: 0;
+}
+
+body[data-theme="vista"] .title-bar {
+  padding: 8px 10px 8px 12px;
+}
+
+body[data-theme="win7"] .win-btn,
+body[data-theme="vista"] .win-btn,
+body[data-theme="win7"] .dlg-btn,
+body[data-theme="vista"] .dlg-btn,
+body[data-theme="win7"] .ph-open,
+body[data-theme="vista"] .ph-open,
+body[data-theme="win7"] #shutdown-restart,
+body[data-theme="vista"] #shutdown-restart {
+  background: linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(216,229,244,0.94) 100%);
+  border: 1px solid rgba(74, 108, 155, 0.48);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 1px 0 rgba(255,255,255,0.1);
+}
+
+body[data-theme="vista"] .win-btn,
+body[data-theme="vista"] .dlg-btn,
+body[data-theme="vista"] .ph-open,
+body[data-theme="vista"] #shutdown-restart {
+  background: linear-gradient(180deg, rgba(255,255,255,0.94) 0%, rgba(203,218,236,0.92) 100%);
+  border: 1px solid rgba(63, 94, 138, 0.42);
+}
+
+body[data-theme="win7"] .window.focused .title-bar {
+  background: linear-gradient(180deg, rgba(150, 201, 248, 0.94) 0%, rgba(61, 125, 214, 0.94) 100%);
+}
+
+body[data-theme="vista"] .window {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.92), 0 0 0 1px rgba(74, 115, 176, 0.42), 0 15px 34px rgba(8, 23, 48, 0.34);
+}
+
+body[data-theme="vista"] .window.focused .title-bar {
+  background: linear-gradient(180deg, rgba(166, 208, 245, 0.96) 0%, rgba(88, 143, 214, 0.95) 100%);
+}
+
+body[data-theme="aqua"] #taskbar,
+body[data-theme="aqua"] #start-menu,
+body[data-theme="aqua"] #programs-submenu,
+body[data-theme="aqua"] .taskbar-theme-picker {
+  display: none !important;
+}
+
+body[data-theme="aqua"] .boot-brand-win {
+  display: none;
+}
+
+body[data-theme="aqua"] .boot-brand-aqua {
+  display: flex;
+}
+
+body[data-theme="aqua"] .boot-panel {
+  grid-template-columns: minmax(240px, 1fr) minmax(300px, 360px);
+}
+
+body[data-theme="win7"] .boot-panel {
+  width: min(860px, 100%);
+  padding: 42px 50px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(227,239,249,0.1) 100%);
+  border-radius: 14px;
+}
+
+body[data-theme="vista"] .boot-panel {
+  width: min(920px, 100%);
+  padding: 52px 60px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(213,228,241,0.06) 100%);
+  border-radius: 18px;
+}
+
+body[data-theme="win7"] .boot-brand-win {
+  align-items: flex-start;
+  gap: 20px;
+}
+
+body[data-theme="vista"] .boot-brand-win {
+  align-items: flex-start;
+  gap: 28px;
+}
+
+body[data-theme="win7"] .boot-instruction {
+  font-size: 17px;
+  opacity: 0.96;
+}
+
+body[data-theme="vista"] .boot-instruction {
+  font-size: 18px;
+  opacity: 0.98;
+}
+
+body[data-theme="aqua"] .boot-brand-aqua .aqua-copy {
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+body[data-theme="aqua"] .boot-brand-aqua .boot-microsoft {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+}
+
+body[data-theme="aqua"] .boot-brand-aqua .boot-windows {
+  font-size: clamp(42px, 5vw, 58px);
+}
+
+body[data-theme="aqua"] .boot-brand-aqua .boot-edition {
+  color: rgba(255,255,255,0.92);
+}
+
+body[data-theme="aqua"] .boot-brand-aqua .boot-instruction {
+  font-size: 17px;
+}
+
+body[data-theme="aqua"] .aqua-menu-popover {
+  z-index: 18000;
+}
+
+body[data-theme="aqua"] .window {
+  background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(236,245,252,0.68) 100%);
+  border: 1px solid rgba(120, 159, 194, 0.55);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.92), 0 18px 36px rgba(18, 52, 87, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+body[data-theme="aqua"] .title-bar {
+  padding: 9px 12px 9px 14px;
+  background: linear-gradient(180deg, rgba(127, 178, 237, 0.96) 0%, rgba(56, 121, 205, 0.95) 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+body[data-theme="aqua"] .win-controls {
+  gap: 8px;
+}
+
+body[data-theme="aqua"] .win-btn {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75), 0 1px 1px rgba(0,0,0,0.12);
+  font-size: 0;
+  color: transparent;
+}
+
+body[data-theme="aqua"] .btn-min { background: linear-gradient(180deg, #ffd66d 0%, #f2b33c 100%); }
+body[data-theme="aqua"] .btn-max { background: linear-gradient(180deg, #91f18d 0%, #39c64b 100%); }
+body[data-theme="aqua"] .btn-close { background: linear-gradient(180deg, #ff8d84 0%, #de4b43 100%); }
+
+body[data-theme="aqua"] .addr-bar,
+body[data-theme="aqua"] .status-bar {
+  background: rgba(242,248,252,0.72);
+}
+
+body[data-theme="aqua"] .frame-wrap,
+body[data-theme="aqua"] .addr-field,
+body[data-theme="aqua"] .run-input-row input,
+body[data-theme="aqua"] .dlg-btn,
+body[data-theme="aqua"] .ph-open,
+body[data-theme="aqua"] #shutdown-restart {
+  border-radius: 10px;
+}
+
+body[data-theme="aqua"] #start-menu,
+body[data-theme="aqua"] #programs-submenu,
+body[data-theme="aqua"] .dialog-body {
+  background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(230,241,250,0.72) 100%);
+  backdrop-filter: blur(14px);
+}
+
+body[data-theme="aqua"] #shutdown-screen {
+  background: linear-gradient(180deg, #7fa7d8 0%, #4f7db0 100%);
+}
+
+body[data-theme="aqua"] .window {
+  width: min(940px, calc(100vw - 32px));
+  height: min(700px, calc(100vh - var(--shell-top) - var(--shell-bottom) - 24px));
+}
+
+body[data-theme="aqua"] .desk-icon {
+  display: none;
+}
+
+body[data-theme="win95"] #start-menu,
+body[data-theme="win95"] #programs-submenu,
+body[data-theme="win95"] .dialog-body {
+  background: linear-gradient(180deg, #d9d9d9 0%, #bdbdbd 100%);
+}
+
+body[data-theme="win95"] #start-menu,
+body[data-theme="win95"] #programs-submenu {
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #8d8d8d, 3px 3px 0 rgba(0, 0, 0, 0.35);
+}
+
+body[data-theme="win95"] .start-sidebar {
+  width: 24px;
+  background: linear-gradient(180deg, #0a3a92 0%, #1d4fbb 50%, #0a3a92 100%);
+}
+
+body[data-theme="win95"] .sidebar-brand {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.32);
+}
+
+body[data-theme="win95"] .start-items {
+  min-width: 184px;
+}
+
+body[data-theme="win95"] .start-item,
+body[data-theme="win95"] .sub-item {
+  padding: 6px 10px 6px 8px;
+}
+
+body[data-theme="win95"] .start-item:hover,
+body[data-theme="win95"] .sub-item:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+body[data-theme="win95"] .start-item:hover .si-arrow {
+  color: var(--white);
+}
+
+body[data-theme="win95"] .window {
+  background: linear-gradient(180deg, #d7d7d7 0%, #bdbdbd 100%);
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #666666;
+  border-bottom-color: #666666;
+}
+
+body[data-theme="win95"] .title-bar {
+  padding: 3px 5px 3px 7px;
+}
+
+body[data-theme="win95"] .window.focused .title-bar {
+  background: linear-gradient(180deg, #0a3a92 0%, #0a246a 100%);
+}
+
+body[data-theme="win95"] .win-btn,
+body[data-theme="win95"] .dlg-btn,
+body[data-theme="win95"] .ph-open,
+body[data-theme="win95"] #shutdown-restart {
+  border-radius: 0;
+  background: linear-gradient(180deg, #f4f4f4 0%, #d0d0d0 100%);
+  border-color: #7b7b7b;
+}
+
+body[data-theme="win95"] .btn-close {
+  color: #ffffff;
+  background: linear-gradient(180deg, #ffb2ad 0%, #d85b4b 100%);
+  border-color: #7f1f18;
+}
+
+body[data-theme="win95"] #shutdown-screen {
+  background: linear-gradient(180deg, #0a3a92 0%, #001b4f 100%);
+}
+
+body[data-theme="win95"] #start-btn,
+body[data-theme="win95"] .tb-win-btn,
+body[data-theme="win95"] #taskbar-clock-wrap {
+  border-radius: 0;
+}
+
+body[data-theme="win95"] #start-btn {
+  padding: 4px 12px;
+  background: linear-gradient(180deg, #e4e4e4 0%, #c1c1c1 100%);
+}
+
+body[data-theme="win95"] .tb-win-btn {
+  background: linear-gradient(180deg, #ececec 0%, #d2d2d2 100%);
+}
+
+body[data-theme="winxp"] #start-menu,
+body[data-theme="winxp"] #programs-submenu,
+body[data-theme="winxp"] .dialog-body {
+  background: linear-gradient(180deg, #fdfdf7 0%, #ece5c9 100%);
+  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.95), inset -1px -1px 0 rgba(127,157,185,0.7), 0 12px 26px rgba(29, 74, 142, 0.24);
+}
+
+body[data-theme="winxp"] #start-menu {
+  min-width: 292px;
+}
+
+body[data-theme="winxp"] .start-sidebar {
+  width: 58px;
+  padding-bottom: 14px;
+  background: linear-gradient(180deg, #0f58c1 0%, #3e8ef0 48%, #1c5fbf 100%);
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.24);
+}
+
+body[data-theme="winxp"] .sidebar-brand {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,0.75);
+}
+
+body[data-theme="winxp"] .start-items {
+  min-width: 224px;
+}
+
+body[data-theme="winxp"] .start-item,
+body[data-theme="winxp"] .sub-item {
+  margin: 2px 5px;
+  padding: 8px 12px 8px 10px;
+  border-radius: 7px;
+}
+
+body[data-theme="winxp"] .start-item:hover,
+body[data-theme="winxp"] .sub-item:hover {
+  background: linear-gradient(180deg, #66afff 0%, #2f77df 100%);
+  color: var(--white);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+body[data-theme="winxp"] .start-item:hover .si-arrow {
+  color: var(--white);
+}
+
+body[data-theme="winxp"] .window {
+  background: linear-gradient(180deg, #f7fbff 0%, #e9f1ff 100%);
+  border: 1px solid #0d4db8;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), 0 0 0 1px #0d4db8, 0 12px 28px rgba(4, 26, 79, 0.38);
+}
+
+body[data-theme="winxp"] .title-bar {
+  padding: 6px 9px 6px 11px;
+}
+
+body[data-theme="winxp"] .window.focused .title-bar {
+  background: linear-gradient(180deg, #2f7df0 0%, #1d66da 55%, #0f4db9 100%);
+}
+
+body[data-theme="winxp"] .win-btn,
+body[data-theme="winxp"] .dlg-btn,
+body[data-theme="winxp"] .ph-open,
+body[data-theme="winxp"] #shutdown-restart {
+  background: linear-gradient(180deg, #ffffff 0%, #dfeafb 100%);
+  border: 1px solid #245edb;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+}
+
+body[data-theme="winxp"] #shutdown-screen {
+  background: linear-gradient(180deg, #2f79e6 0%, #1651ac 100%);
+}
+
+body[data-theme="winxp"] #start-btn {
+  min-width: 104px;
+  padding: 4px 18px 4px 14px;
+}
+
+body[data-theme="win7"] #start-menu,
+body[data-theme="win7"] #programs-submenu,
+body[data-theme="win7"] .dialog-body {
+  background: linear-gradient(180deg, rgba(255,255,255,0.76) 0%, rgba(231,239,246,0.62) 100%);
+  border-color: rgba(255,255,255,0.26);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.68), 0 12px 24px rgba(10, 21, 39, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+body[data-theme="win7"] #start-menu {
+  min-width: 248px;
+}
+
+body[data-theme="win7"] .start-sidebar {
+  width: 32px;
+  background: linear-gradient(180deg, rgba(54,63,80,0.96) 0%, rgba(27,33,46,0.98) 100%);
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.08);
+}
+
+body[data-theme="win7"] .sidebar-brand {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.28);
+}
+
+body[data-theme="win7"] .start-items {
+  min-width: 210px;
+}
+
+body[data-theme="win7"] .start-item,
+body[data-theme="win7"] .sub-item {
+  margin: 1px 5px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 4px;
+}
+
+body[data-theme="win7"] .start-item:hover,
+body[data-theme="win7"] .sub-item:hover {
+  background: rgba(102,153,219,0.2);
+  color: #102c52;
+}
+
+body[data-theme="win7"] .si-arrow {
+  color: rgba(16,44,82,0.68);
+}
+
+body[data-theme="win7"] .window {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(233,242,252,0.78) 100%);
+  border: 1px solid rgba(61, 95, 144, 0.28);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.88), 0 0 0 1px rgba(33, 73, 128, 0.22), 0 8px 18px rgba(18, 56, 104, 0.24);
+}
+
+body[data-theme="win7"] .title-bar {
+  padding: 5px 8px 5px 10px;
+}
+
+body[data-theme="win7"] .window.focused .title-bar {
+  background: linear-gradient(180deg, rgba(131,184,237,0.98) 0%, rgba(76,136,219,0.96) 100%);
+}
+
+body[data-theme="win7"] .tb-win-btn,
+body[data-theme="win7"] #taskbar-clock-wrap,
+body[data-theme="win7"] .taskbar-theme-picker select,
+body[data-theme="win7"] .win-btn,
+body[data-theme="win7"] .dlg-btn,
+body[data-theme="win7"] .ph-open,
+body[data-theme="win7"] #shutdown-restart {
+  background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(214,227,241,0.88) 100%);
+  border-color: rgba(115, 136, 167, 0.35);
+}
+
+body[data-theme="win7"] .tb-win-btn {
+  border-radius: 7px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(219,231,244,0.22) 100%);
+}
+
+body[data-theme="win7"] .tb-win-btn.active {
+  background: linear-gradient(180deg, rgba(255,255,255,0.66) 0%, rgba(180,205,236,0.3) 100%);
+}
+
+body[data-theme="win7"] #start-btn {
+  background: radial-gradient(circle at 35% 30%, #7fd965 0%, #2f7d31 54%, #214b1d 100%);
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.52), 0 1px 0 rgba(255,255,255,0.12);
+}
+
+body[data-theme="vista"] #start-menu,
+body[data-theme="vista"] #programs-submenu,
+body[data-theme="vista"] .dialog-body {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(220,233,245,0.7) 100%);
+  border-color: rgba(96, 125, 172, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 18px 36px rgba(12, 26, 51, 0.3);
+  backdrop-filter: blur(18px);
+}
+
+body[data-theme="vista"] #start-menu {
+  min-width: 262px;
+}
+
+body[data-theme="vista"] .start-sidebar {
+  width: 50px;
+  background: linear-gradient(180deg, rgba(116,178,241,0.96) 0%, rgba(45,112,196,0.98) 100%);
+  box-shadow: inset -1px 0 0 rgba(255,255,255,0.34), inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+body[data-theme="vista"] .sidebar-brand {
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.58);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+body[data-theme="vista"] .start-items {
+  min-width: 220px;
+}
+
+body[data-theme="vista"] .start-item,
+body[data-theme="vista"] .sub-item {
+  margin: 2px 4px;
+  padding: 8px 13px 8px 10px;
+  border-radius: 9px;
+}
+
+body[data-theme="vista"] .start-item:hover,
+body[data-theme="vista"] .sub-item:hover {
+  background: linear-gradient(180deg, rgba(127,185,243,0.72) 0%, rgba(70,132,214,0.72) 100%);
+  color: var(--white);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 0 0 1px rgba(53,104,168,0.2);
+}
+
+body[data-theme="vista"] .window {
+  background: linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(228,238,248,0.66) 100%);
+  border: 1px solid rgba(75, 107, 151, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.92), 0 0 0 1px rgba(74, 115, 176, 0.42), 0 15px 34px rgba(8, 23, 48, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+body[data-theme="vista"] .title-bar {
+  padding: 8px 10px 8px 12px;
+}
+
+body[data-theme="vista"] .window.focused .title-bar {
+  background: linear-gradient(180deg, rgba(142,191,243,0.98) 0%, rgba(86,140,211,0.97) 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+body[data-theme="vista"] .win-btn,
+body[data-theme="vista"] .dlg-btn,
+body[data-theme="vista"] .ph-open,
+body[data-theme="vista"] #shutdown-restart {
+  background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(207,223,239,0.94) 100%);
+  border: 1px solid rgba(67, 94, 138, 0.42);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 1px 0 rgba(255,255,255,0.1);
+}
+
+body[data-theme="vista"] .tb-win-btn {
+  border-radius: 11px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, rgba(209,225,243,0.08) 100%);
+}
+
+body[data-theme="vista"] .tb-win-btn.active {
+  background: linear-gradient(180deg, rgba(255,255,255,0.46) 0%, rgba(175,207,242,0.26) 100%);
+}
+
+body[data-theme="vista"] #start-btn {
+  min-width: 104px;
+  background: radial-gradient(circle at 35% 30%, #90d8ff 0%, #3285e7 52%, #14529b 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.56), 0 1px 0 rgba(255,255,255,0.08);
+}
+
 /* ── MOBILE ──────────────────────────────────────── */
 @media (max-width: 600px) {
   .boot-panel {
@@ -902,7 +1871,7 @@ body[data-theme="winxp"] #shutdown-screen {
     align-content: start;
     padding: 28px 20px 20px;
     pointer-events: all;
-    height: calc(100dvh - var(--tb-h));
+    height: calc(100dvh - var(--shell-top) - var(--shell-bottom));
     overflow-y: auto;
   }
 
@@ -927,7 +1896,7 @@ body[data-theme="winxp"] #shutdown-screen {
     left: 0 !important;
     top: 0 !important;
     width: 100vw !important;
-    height: calc(100dvh - var(--tb-h)) !important;
+    height: calc(100dvh - var(--shell-top) - var(--shell-bottom)) !important;
     box-shadow: none;
     border: none;
     z-index: 50;
@@ -969,6 +1938,100 @@ body[data-theme="winxp"] #shutdown-screen {
   }
   #taskbar-clock {
     font-size: 12px;
+  }
+
+  body[data-theme="aqua"] #taskbar {
+    display: none;
+  }
+
+body[data-theme="aqua"] #aqua-menubar {
+  display: none;
+}
+
+  body[data-theme="aqua"] #aqua-dock {
+    display: none;
+  }
+
+  body[data-theme="aqua"] #aqua-mobile-launcher {
+    display: flex;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px 14px 12px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.88) 0%, rgba(224,236,247,0.76) 100%);
+    border: 1px solid rgba(255,255,255,0.35);
+    box-shadow: 0 16px 30px rgba(8, 26, 53, 0.25);
+    backdrop-filter: blur(16px);
+    z-index: 17001;
+    pointer-events: auto;
+  }
+
+  body[data-theme="aqua"] .boot-panel {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  body[data-theme="aqua"] .boot-brand-aqua {
+    align-items: center;
+    text-align: center;
+  }
+
+  body[data-theme="aqua"] .boot-brand-aqua .aqua-copy {
+    align-items: center;
+  }
+
+  body[data-theme="aqua"] #aqua-mobile-launcher {
+    bottom: 14px;
+  }
+
+  body[data-theme="aqua"] .aqua-mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px 8px;
+  }
+
+  body[data-theme="aqua"] .aqua-mobile-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    min-width: 0;
+    color: #12325d;
+  }
+
+  body[data-theme="aqua"] .aqua-mobile-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(214,236,250,0.88) 100%);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.88), 0 8px 14px rgba(3, 25, 59, 0.2);
+    font-size: 24px;
+  }
+
+  body[data-theme="aqua"] .aqua-mobile-label {
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  body[data-theme="aqua"] .aqua-mobile-signout {
+    padding: 9px 14px;
+    border: 1px solid rgba(80, 109, 148, 0.45);
+    border-radius: 999px;
+    background: linear-gradient(180deg, #ffffff 0%, #d8e8f7 100%);
+    color: #12325d;
+    font-weight: bold;
   }
 
   /* Start menu full-width on mobile */

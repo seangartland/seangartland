@@ -20,6 +20,24 @@ const THEMES = {
     bootEdition: 'XP',
     bootInstruction: 'To begin, click your user name.',
   },
+  win7: {
+    id: 'win7',
+    label: 'Windows 7',
+    bootEdition: '7',
+    bootInstruction: 'Click to enter the desktop.',
+  },
+  vista: {
+    id: 'vista',
+    label: 'Windows Vista',
+    bootEdition: 'Vista',
+    bootInstruction: 'Click to enter the desktop.',
+  },
+  aqua: {
+    id: 'aqua',
+    label: 'macOS Aqua',
+    bootEdition: 'Aqua',
+    bootInstruction: 'Click to enter the desktop.',
+  },
 };
 
 const DEFAULT_THEME = 'win95';
@@ -28,11 +46,20 @@ const bootScreen = document.getElementById('boot-screen');
 const bootUser = document.getElementById('boot-user');
 const bootEdition = document.getElementById('boot-edition');
 const bootInstruction = document.getElementById('boot-instruction');
+const bootEditionAqua = document.getElementById('boot-edition-aqua');
+const bootInstructionAqua = document.getElementById('boot-instruction-aqua');
 const themeSelect = document.getElementById('theme-select');
 const taskbarThemeSelect = document.getElementById('taskbar-theme-select');
+const aquaThemeSelect = document.getElementById('aqua-theme-select');
 const startMenu = document.getElementById('start-menu');
 const startBtn = document.getElementById('start-btn');
 const programsSub = document.getElementById('programs-submenu');
+const aquaShell = document.getElementById('aqua-shell');
+const aquaDock = document.getElementById('aqua-dock');
+const aquaMobileGrid = document.querySelector('#aqua-mobile-launcher .aqua-mobile-grid');
+const aquaAppleButton = document.getElementById('aqua-apple-button');
+const aquaMenuPopover = document.getElementById('aqua-menu-popover');
+const aquaMobileSignOut = document.getElementById('aqua-mobile-signout');
 const runDialog = document.getElementById('run-dialog');
 const runInput = document.getElementById('run-input');
 const shutdownScreen = document.getElementById('shutdown-screen');
@@ -42,14 +69,45 @@ let appInitialized = false;
 let clockTimer = null;
 let currentTheme = body.dataset.theme in THEMES ? body.dataset.theme : DEFAULT_THEME;
 
+function syncThemeHooks(themeId) {
+  Object.keys(THEMES).forEach(id => {
+    body.classList.toggle(`theme-${id}`, id === themeId);
+  });
+
+  const shellTheme = themeId === 'aqua' ? 'aqua' : 'windows';
+  body.dataset.shell = shellTheme;
+  body.dataset.menuModel = shellTheme;
+
+  [
+    startMenu,
+    programsSub,
+    startBtn,
+    document.getElementById('taskbar'),
+    document.getElementById('taskbar-windows'),
+    aquaShell,
+    document.getElementById('aqua-menubar'),
+    aquaMenuPopover,
+  ].forEach(el => {
+    if (!el) return;
+    el.dataset.theme = themeId;
+    el.dataset.shell = shellTheme;
+  });
+}
+
 function applyTheme(themeId) {
   const theme = THEMES[themeId] || THEMES[DEFAULT_THEME];
   currentTheme = theme.id;
   body.dataset.theme = theme.id;
+  syncThemeHooks(theme.id);
   bootEdition.textContent = theme.bootEdition;
   bootInstruction.textContent = theme.bootInstruction;
-  themeSelect.value = theme.id;
-  taskbarThemeSelect.value = theme.id;
+  if (bootEditionAqua) bootEditionAqua.textContent = theme.id === 'aqua' ? 'Aqua' : theme.bootEdition;
+  if (bootInstructionAqua) bootInstructionAqua.textContent = theme.id === 'aqua' ? 'Click to enter the desktop.' : theme.bootInstruction;
+  [themeSelect, taskbarThemeSelect, aquaThemeSelect].forEach(select => {
+    if (select) select.value = theme.id;
+  });
+  bootScreen.dataset.theme = theme.id;
+  if (theme.id === 'aqua') closeStartMenu();
 }
 
 function isDesktopActive() {
@@ -60,6 +118,21 @@ function enterDesktop() {
   if (!appInitialized) initApp();
   body.dataset.screen = 'desktop';
   bootScreen.classList.add('hidden');
+}
+
+function returnToBootScreen() {
+  closeStartMenu();
+  runDialog.style.display = 'none';
+  shutdownScreen.classList.add('hidden');
+  body.dataset.screen = 'login';
+  bootScreen.classList.remove('hidden');
+}
+
+function getShellInsets() {
+  const styles = getComputedStyle(document.documentElement);
+  const top = parseInt(styles.getPropertyValue('--shell-top')) || 0;
+  const bottom = parseInt(styles.getPropertyValue('--shell-bottom')) || parseInt(styles.getPropertyValue('--tb-h')) || 0;
+  return { top, bottom };
 }
 
 // ── WINDOW FACTORY ────────────────────────────────
@@ -170,7 +243,7 @@ const maxState = {};
 function toggleMaximize(id) {
   const win   = document.getElementById('win-' + id);
   const btn   = win.querySelector('.btn-max');
-  const tbH   = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tb-h'));
+  const { top, bottom } = getShellInsets();
   const state = maxState[id] || (maxState[id] = { maximized: false });
 
   if (!state.maximized) {
@@ -179,9 +252,9 @@ function toggleMaximize(id) {
     state.savedWidth  = win.style.width;
     state.savedHeight = win.style.height;
     win.style.left    = '0';
-    win.style.top     = '0';
+    win.style.top     = `${top}px`;
     win.style.width   = window.innerWidth + 'px';
-    win.style.height  = (window.innerHeight - tbH) + 'px';
+    win.style.height  = (window.innerHeight - top - bottom) + 'px';
     state.maximized   = true;
     btn.textContent   = '❐';
   } else {
@@ -225,9 +298,9 @@ function openWindow(id) {
     cascade = (cascade + 1) % 8;
   }
   win.style.display = 'flex';
-  const _tbH  = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tb-h'));
+  const { top, bottom } = getShellInsets();
   win.style.left = Math.min(openPos[id].left, Math.max(0, window.innerWidth  - win.offsetWidth))  + 'px';
-  win.style.top  = Math.min(openPos[id].top,  Math.max(0, window.innerHeight - win.offsetHeight - _tbH)) + 'px';
+  win.style.top  = Math.min(openPos[id].top,  Math.max(0, window.innerHeight - win.offsetHeight - top - bottom)) + 'px';
 
   addTaskbarBtn(id);
   focusWindow(id);
@@ -316,9 +389,9 @@ function makeDraggable(win) {
   });
   document.addEventListener('mousemove', e => {
     if (!dragging) return;
-    const tbH  = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tb-h'));
+    const { top, bottom } = getShellInsets();
     const maxL = window.innerWidth  - win.offsetWidth;
-    const maxT = window.innerHeight - win.offsetHeight - tbH;
+    const maxT = window.innerHeight - win.offsetHeight - top - bottom;
     win.style.left = Math.max(0, Math.min(e.clientX - ox, maxL)) + 'px';
     win.style.top  = Math.max(0, Math.min(e.clientY - oy, maxT)) + 'px';
   });
@@ -360,9 +433,9 @@ function initIcons() {
         if (!didDrag && Math.hypot(dx, dy) < 5) return;
         didDrag = true;
         const desk = document.getElementById('desktop');
-        const tbH  = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--tb-h'));
+        const { top, bottom } = getShellInsets();
         icon.style.left = Math.max(0, Math.min(origL + dx, desk.offsetWidth  - icon.offsetWidth))  + 'px';
-        icon.style.top  = Math.max(0, Math.min(origT + dy, desk.offsetHeight - icon.offsetHeight - tbH)) + 'px';
+        icon.style.top  = Math.max(0, Math.min(origT + dy, desk.offsetHeight - icon.offsetHeight - top - bottom)) + 'px';
       };
 
       const onUp = () => {
@@ -396,6 +469,7 @@ let subCloseTimer = null;
 
 function openStartMenu()  {
   if (!isDesktopActive()) return;
+  if (currentTheme === 'aqua') return;
   startMenu.classList.remove('hidden');
   startBtn.classList.add('active');
 }
@@ -440,8 +514,39 @@ function initApp() {
     programsSub.appendChild(item);
   });
 
+  if (aquaDock && !aquaDock.dataset.bound) {
+    aquaDock.dataset.bound = 'true';
+    ['resume', 'linkedin', 'github', 'nostalgia', 'pigskin', 'scoracle'].forEach(id => {
+      const p = PROJECTS.find(item => item.id === id);
+      if (!p) return;
+      const btn = document.createElement('button');
+      btn.className = 'aqua-dock-item';
+      btn.type = 'button';
+      btn.dataset.id = id;
+      btn.innerHTML = `<span class="aqua-dock-icon" aria-hidden="true">${p.icon}</span><span class="aqua-dock-label">${p.title}</span>`;
+      btn.addEventListener('click', () => openWindow(id));
+      aquaDock.appendChild(btn);
+    });
+  }
+
+  if (aquaMobileGrid && !aquaMobileGrid.dataset.bound) {
+    aquaMobileGrid.dataset.bound = 'true';
+    ['resume', 'linkedin', 'github', 'nostalgia', 'pigskin', 'scoracle'].forEach(id => {
+      const p = PROJECTS.find(item => item.id === id);
+      if (!p) return;
+      const btn = document.createElement('button');
+      btn.className = 'aqua-mobile-item';
+      btn.type = 'button';
+      btn.dataset.id = id;
+      btn.innerHTML = `<span class="aqua-mobile-icon" aria-hidden="true">${p.icon}</span><span class="aqua-mobile-label">${p.title}</span>`;
+      btn.addEventListener('click', () => openWindow(id));
+      aquaMobileGrid.appendChild(btn);
+    });
+  }
+
   const itemPrograms = document.getElementById('item-programs');
   const openSub = () => {
+    if (currentTheme === 'aqua') return;
     clearTimeout(subCloseTimer);
     programsSub.classList.remove('hidden');
   };
@@ -451,6 +556,7 @@ function initApp() {
 
   startBtn.addEventListener('click', e => {
     e.stopPropagation();
+    if (currentTheme === 'aqua') return;
     toggleStartMenu();
   });
   itemPrograms.addEventListener('mouseenter', openSub);
@@ -506,11 +612,29 @@ function initApp() {
     }
   });
 
+  aquaAppleButton?.addEventListener('click', e => {
+    e.stopPropagation();
+    aquaMenuPopover.classList.toggle('hidden');
+  });
+  aquaMenuPopover?.addEventListener('click', e => {
+    const action = e.target?.dataset?.action;
+    if (action === 'signout') returnToBootScreen();
+    if (action === 'restart') location.reload();
+    aquaMenuPopover.classList.add('hidden');
+  });
+  aquaMobileSignOut?.addEventListener('click', returnToBootScreen);
+  document.addEventListener('click', e => {
+    if (aquaMenuPopover && !aquaMenuPopover.contains(e.target) && e.target !== aquaAppleButton) {
+      aquaMenuPopover.classList.add('hidden');
+    }
+  });
+
   updateClock();
   clockTimer = setInterval(updateClock, 10000);
   appInitialized = true;
 }
 
+aquaThemeSelect?.addEventListener('change', e => applyTheme(e.target.value));
 themeSelect.addEventListener('change', e => applyTheme(e.target.value));
 taskbarThemeSelect.addEventListener('change', e => applyTheme(e.target.value));
 bootUser.addEventListener('click', enterDesktop);
