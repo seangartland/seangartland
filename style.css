@@ -1398,27 +1398,33 @@ body[data-theme="aqua"] .boot-panel {
 }
 
 body[data-theme="win7"] .boot-panel {
-  width: min(860px, 100%);
-  padding: 42px 50px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(227,239,249,0.1) 100%);
-  border-radius: 14px;
+  width: min(700px, 100%);
+  padding: 40px 44px;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(227,239,249,0.1) 100%);
+  border-radius: 16px;
 }
 
 body[data-theme="vista"] .boot-panel {
-  width: min(920px, 100%);
-  padding: 52px 60px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(213,228,241,0.06) 100%);
-  border-radius: 18px;
+  width: min(980px, 100%);
+  padding: 54px 64px;
+  grid-template-columns: minmax(280px, 1.15fr) minmax(280px, 0.85fr);
+  align-items: center;
+  gap: 40px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(213,228,241,0.06) 100%);
+  border-radius: 20px;
 }
 
 body[data-theme="win7"] .boot-brand-win {
-  align-items: flex-start;
-  gap: 20px;
+  align-items: center;
+  gap: 18px;
 }
 
 body[data-theme="vista"] .boot-brand-win {
   align-items: flex-start;
-  gap: 28px;
+  gap: 30px;
 }
 
 body[data-theme="win7"] .boot-instruction {
@@ -1431,23 +1437,105 @@ body[data-theme="vista"] .boot-instruction {
   opacity: 0.98;
 }
 
+body[data-theme="win7"] .boot-microsoft {
+  display: none;
+}
+
+body[data-theme="win7"] .boot-windows {
+  font-size: clamp(40px, 5vw, 54px);
+  letter-spacing: -0.03em;
+}
+
+body[data-theme="win7"] .boot-edition {
+  font-size: clamp(18px, 2.4vw, 24px);
+  color: rgba(255,255,255,0.82);
+}
+
+body[data-theme="win7"] .boot-user-area {
+  width: min(320px, 100%);
+}
+
+body[data-theme="vista"] .boot-brand-win .boot-microsoft {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+body[data-theme="vista"] .boot-brand-win .boot-windows {
+  font-size: clamp(46px, 5.8vw, 64px);
+  letter-spacing: -0.04em;
+}
+
+body[data-theme="vista"] .boot-brand-win .boot-edition {
+  font-size: clamp(20px, 2.8vw, 28px);
+  color: rgba(255,255,255,0.86);
+}
+
+body[data-theme="vista"] .boot-user-area {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 body[data-theme="aqua"] .boot-brand-aqua .aqua-copy {
   flex-direction: column;
-  gap: 4px;
-  align-items: flex-start;
+  gap: 6px;
+  align-items: center;
+}
+
+body[data-theme="aqua"] #boot-screen {
+  background: linear-gradient(180deg, #7fa8d8 0%, #6c9ccc 100%);
+}
+
+body[data-theme="aqua"] #boot-screen::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 24px;
+  background: linear-gradient(180deg, rgba(245,248,252,0.92) 0%, rgba(218,230,241,0.82) 100%);
+  border-bottom: 1px solid rgba(88, 123, 165, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.92);
+  pointer-events: none;
+}
+
+body[data-theme="aqua"] #boot-screen::after {
+  content: "Sean Gartland";
+  position: fixed;
+  top: 4px;
+  left: 36px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #102a4b;
+  pointer-events: none;
+}
+
+body[data-theme="aqua"] .boot-panel {
+  width: min(680px, 100%);
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  gap: 28px;
+  padding-top: 48px;
+}
+
+body[data-theme="aqua"] .boot-brand-aqua {
+  align-items: center;
+  gap: 12px;
 }
 
 body[data-theme="aqua"] .boot-brand-aqua .boot-microsoft {
   font-size: 14px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
 }
 
 body[data-theme="aqua"] .boot-brand-aqua .boot-windows {
-  font-size: clamp(42px, 5vw, 58px);
+  display: none;
 }
 
 body[data-theme="aqua"] .boot-brand-aqua .boot-edition {
-  color: rgba(255,255,255,0.92);
+  display: none;
 }
 
 body[data-theme="aqua"] .boot-brand-aqua .boot-instruction {
@@ -1896,6 +1984,11 @@ body[data-theme="vista"] #start-btn {
     text-align: center;
   }
 
+  body[data-theme="vista"] .boot-panel {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
   body[data-theme="win7"] .boot-brand-win .boot-brand-text,
   body[data-theme="vista"] .boot-brand-win .boot-brand-text {
     justify-content: center;
@@ -1915,6 +2008,11 @@ body[data-theme="vista"] #start-btn {
   body[data-theme="vista"] .boot-brand-win .boot-instruction {
     max-width: 18ch;
     margin-inline: auto;
+  }
+
+  body[data-theme="vista"] .boot-user-area {
+    align-self: auto;
+    width: 100%;
   }
 
   .user-tile {
