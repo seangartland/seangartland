@@ -936,10 +936,40 @@ body[data-theme="winxp"] #shutdown-screen {
   /* Hide minimize/maximize on mobile — close only */
   .btn-min, .btn-max { display: none; }
 
-  /* Taskbar: hide window buttons, keep start + clock */
+  /* Taskbar: hide window buttons, keep start + theme + clock */
   #taskbar-windows { display: none; }
-  #taskbar { justify-content: space-between; }
-  .taskbar-theme-picker { display: none; }
+  #taskbar {
+    justify-content: space-between;
+    gap: 4px;
+    padding: 3px 4px;
+  }
+  .taskbar-theme-picker {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+    padding: 0;
+  }
+  .taskbar-theme-picker span {
+    display: none;
+  }
+  .taskbar-theme-picker select {
+    min-width: 0;
+    width: 100%;
+    max-width: 132px;
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+  #start-btn {
+    padding-inline: 10px;
+    font-size: 14px;
+  }
+  #taskbar-clock-wrap {
+    padding-inline: 8px;
+  }
+  #taskbar-clock {
+    font-size: 12px;
+  }
 
   /* Start menu full-width on mobile */
   #start-menu {
