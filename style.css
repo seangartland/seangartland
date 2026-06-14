@@ -570,4 +570,9 @@ body, button, input, label {
 
   /* Hide programs submenu arrow on mobile */
   .si-arrow { display: none; }
+
+  #item-run,
+  #run-sep {
+    display: none;
+  }
 }

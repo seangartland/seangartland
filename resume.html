@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sean Gartland — Resume</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Georgia, "Times New Roman", serif; font-size: 14px; color: #1a1a1a; background: #f4f4f0; padding: 32px 16px; }
@@ -21,7 +22,7 @@
     section { margin-bottom: 24px; }
     h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; font-family: Arial, sans-serif; border-bottom: 1px solid #ccc; padding-bottom: 4px; margin-bottom: 14px; color: #555; }
 
-    .skills-outer { display: flex; gap: 28px; align-items: center; }
+    .skills-outer { display: flex; gap: 24px; align-items: center; }
     .skills-grid { display: flex; flex-direction: column; gap: 7px; flex: 1; }
     .skill-row { display: flex; align-items: baseline; gap: 8px; font-family: Arial, sans-serif; font-size: 12px; }
     .skill-label { font-weight: bold; font-size: 11px; color: #555; min-width: 78px; flex-shrink: 0; text-align: right; }
@@ -36,6 +37,7 @@
       color: #333;
       white-space: nowrap;
     }
+    .cat-tools .skill-tags { flex-wrap: nowrap; }
 
     /* Logo grid */
     .skills-logos {
@@ -165,6 +167,11 @@
     .tl-gap { height: 20px; }
 
     /* Latest Projects: no spine, full-width cards */
+    .projects-timeline {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
     .projects-timeline .tl-spine { display: none; }
     .projects-timeline .tl-card { padding-left: 0; }
     .project-header {
@@ -242,6 +249,7 @@
       .skills-logos .logo-item span { font-size: 8px; }
       .skill-label { min-width: 64px; font-size: 10px; }
       .skill-tag { font-size: 10px; padding: 2px 6px; }
+      .cat-tools .skill-tags { flex-wrap: wrap; }
 
       /* Timeline: tighten spine */
       .tl-spine { width: 30px; }
@@ -256,6 +264,7 @@
       .tl-company-group { padding: 6px 8px 6px 8px; }
 
       /* Projects */
+      .projects-timeline { grid-template-columns: 1fr; gap: 0; }
       .project-stack { font-size: 10px; }
       .project-desc  { font-size: 11px; }
 
@@ -287,8 +296,9 @@
         <span class="skill-label">AI &amp; Tools</span>
         <div class="skill-tags">
           <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">Codex</span>
           <span class="skill-tag">MCP</span>
-          <span class="skill-tag">OpenAI</span>
+          <span class="skill-tag">Semantic Modeling</span>
           <span class="skill-tag">Docker</span>
         </div>
       </div>
@@ -338,9 +348,9 @@
           <div class="tl-company-group">
             <div class="project-header">
               <div class="tl-company-name"><a class="tl-company-link" href="https://timesurf.tv" target="_blank">TimeSurf.TV</a></div>
-              <div class="project-stack">Vanilla JS · YouTube API · Vercel</div>
+              <div class="project-stack">Vanilla JS · Vercel</div>
             </div>
-            <div class="project-desc">Retro TV channel-surfer for nostalgic YouTube clips by year.</div>
+            <div class="project-desc">Retro channel-surfer for nostalgic clips by year.</div>
           </div>
         </div>
       </div>
@@ -356,9 +366,9 @@
           <div class="tl-company-group">
             <div class="project-header">
               <div class="tl-company-name"><a class="tl-company-link" href="https://pigskin-royale.vercel.app" target="_blank">Pigskin Royale</a></div>
-              <div class="project-stack">React · TypeScript · Node.js · PostgreSQL</div>
+              <div class="project-stack">React · TypeScript · PostgreSQL</div>
             </div>
-            <div class="project-desc">Salary-cap Fantasy Football, climb the worldwide leaderboard.</div>
+            <div class="project-desc">Salary-cap fantasy football with global leaderboards.</div>
           </div>
         </div>
       </div>
@@ -382,13 +392,12 @@
             <div class="tl-company-name"><a class="tl-company-link" href="https://www.serenaandlily.com" target="_blank">Serena &amp; Lily</a> <span class="tl-company-loc">Sausalito, CA</span></div>
             <div class="tl-role primary">Senior Director of Data Analytics <span class="tl-yr-note">(2024–present)</span></div>
             <ul class="tl-bullets">
-              <li>Enable business users to query and interact with data directly via Claude (semantic layer + MCP integrations)</li>
-              <li>Build and ship agentic workflows across the analytics lifecycle, from request to delivery</li>
-              <li>Lead the team responsible for data acquisition, modeling, and delivery across all business units</li>
-              <li>Own and administer Snowflake + Sigma; pioneer new features for agentic AI workflows</li>
-              <li>Partner with C-suite and cross-functional leaders to surface insights driving revenue and margin</li>
+              <li>Automate Slack/Zoom analytics intake through Jira, agent dev/QA, and GitHub Actions CI</li>
+              <li>Bridge Claude chat with semantic-layer tools for self-service analytics used by hundreds of business users</li>
+              <li>Lead org-wide data acquisition, modeling, Snowflake/Sigma governance, and analytics enablement</li>
+              <li>Partner with executives on revenue, margin, inventory, and operating decisions</li>
             </ul>
-            <div class="tl-role">VP of Merchandise Planning <span class="tl-yr-note">(2023–2024) — pivoted to build the AI-native data org</span></div>
+            <div class="tl-role">VP of Merchandise Planning <span class="tl-yr-note">(2023–2024) — pivoted to implement AI analytics</span></div>
             <div class="tl-role">Director of Merchandise Planning Analytics <span class="tl-yr-note">(2021–2023)</span></div>
           </div>
         </div>
@@ -404,7 +413,10 @@
         <div class="tl-card">
           <div class="tl-company-group">
             <div class="tl-company-name"><a class="tl-company-link" href="https://www.dollskill.com" target="_blank">Dolls Kill</a> <span class="tl-company-loc">San Francisco, CA</span></div>
-            <div class="tl-role">Director of Data Analytics <span class="tl-yr-note">(2021)</span></div>
+            <div class="tl-role">Head of Analytics &amp; Strategic Finance <span class="tl-yr-note">(2021)</span></div>
+            <ul class="tl-bullets">
+              <li>Owned strategy, FP&amp;A, and data for a Sequoia-backed fashion startup; led two quarterly board presentations</li>
+            </ul>
             <div class="tl-role">Director of Strategic Planning <span class="tl-yr-note">(2019–2021)</span></div>
           </div>
         </div>
@@ -421,6 +433,10 @@
           <div class="tl-company-group">
             <div class="tl-company-name"><a class="tl-company-link" href="https://www.williams-sonoma.com" target="_blank">Williams-Sonoma, Inc.</a> <span class="tl-company-loc">San Francisco, CA</span></div>
             <div class="tl-role">Director of Strategic Planning <span class="tl-yr-note">(2017–2019)</span></div>
+            <ul class="tl-bullets">
+              <li>Led demand forecasting software rollout across 50+ users and executive stakeholders</li>
+              <li>Identified model parameter drift causing 10%+ weekly forecast swings; fix added to vendor platform</li>
+            </ul>
             <div class="tl-role">Strategic Planning Manager <span class="tl-yr-note">(2016–2017)</span></div>
             <div class="tl-role">Merchandise Planner <span class="tl-yr-note">(2015–2016)</span></div>
           </div>
